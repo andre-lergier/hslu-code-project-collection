@@ -49,4 +49,5 @@ Those links helped me out to understand MongoDB:
 ### Rest
 
 ## Prototype
-For concept and design purposes I created a simple prototype using [Figma](https://www.figma.com/).
+For concept and design purposes I created a simple prototype using [Figma](https://www.figma.com/).  
+Launch the prototype with this link: https://www.figma.com/file/5cJqJfXD5euCykWQKnMR2E/Home?node-id=0%3A1
