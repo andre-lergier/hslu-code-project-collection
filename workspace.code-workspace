@@ -1,0 +1,11 @@
+{
+	"folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "frontend"
+    }
+  ],
+  "settings": { /* "eslint.validate": [ { "language": "vue", "autoFix": true }, { "language": "html", "autoFix": true }, { "language": "javascript", "autoFix": true }, { "language": "typescript", "autoFix": true } ] */ }
+}
