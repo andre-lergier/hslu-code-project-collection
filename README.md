@@ -20,7 +20,33 @@ With this project I want to try out technologies, I never used before or I'm not
 
 ---
 
-## Documentation
+## Project setup frontend
+```
+cd frontend
+```
+
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+---
+
+# Documentation
 
 ## Architecture  
 
@@ -34,10 +60,14 @@ In all my previous projects with a database I used a relational SQL-DB. So this 
 ![m100-database-terminology](https://university-courses.s3.amazonaws.com/M100/m100-database-terminology.png)  
 
 Documents are organized in Collections. In a SQL-DB, a collection would be a table and a row a document.
-Data is organized in field-value pairs, like _key & value_ in JSON or a JS object.
+Data is organized in field-value pairs, like _key & value_ in JSON or a JS object.  
+A document is stored in `BSON` format, which means _Binary_ JSON. BSON for example allows additional data types like `Integer`, `Long`, `Float`, `Date`.
 
 >__Clusters:__ Group of servers that store your data.  
 __Replica Set:__ A few connected machines that store the same data to ensure that if something happens to one of the machines the data will remain intact.
+
+
+
 
 #### Tutorials
 Those links helped me out to understand MongoDB:
