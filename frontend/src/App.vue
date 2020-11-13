@@ -1,10 +1,19 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
+  <the-navigation />
   <router-view/>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import TheNavigation from '@/components/TheNavigation.vue';
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    TheNavigation,
+  },
+});
+</script>
 
 <style lang="scss">
 @import 'style/main.scss';

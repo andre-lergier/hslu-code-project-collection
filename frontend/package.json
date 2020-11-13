@@ -1,13 +1,19 @@
 {
-  "name": "hslu-web-project-collection",
+  "name": "hslu-web-project-collection--frontend",
   "version": "0.1.0",
   "private": true,
+  "author": "André Lergier | lergier.ch",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-pro": "^5.15.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/pro-light-svg-icons": "^5.15.1",
+    "@fortawesome/vue-fontawesome": "^3.0.0-1",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"

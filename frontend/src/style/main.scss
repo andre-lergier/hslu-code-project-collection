@@ -1,13 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;700&display=swap');
+@import 'reset';
 
 :root{
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+  --font-serif: 'Playfair Display', var(--font-sans);
   --grid-spacer: 15px;
+  --color-yellow: #FFD25F;
+  --color-blue: #1A628A;
+  --color-dark-blue: #26495E;
+  --color-text-light: #707070;
+  --color-link: var(--color-blue);
+  --color-gray-light: #f4f4f4;
+}
+
+::selection {
+  background: #656565;
+  color: #fff;
 }
 
 body{
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-variation-settings: 'wght' 400;
+  -webkit-tap-highlight-color: transparent;
+
 }
 
 .container{
@@ -15,4 +34,33 @@ body{
   padding: 0 var(--grid-spacer);
   margin-left: auto;
   margin-right: auto;
+}
+
+h1, h2, h3, h4, h5{
+  font-variation-settings: 'wght' 600;
+}
+
+h1, h2 {
+  font-family: var(--font-serif);
+}
+
+h2{
+  font-size:1.3rem;
+  font-variation-settings: 'wght' 500;
+}
+
+a{
+  color: var(--color-link);
+  text-decoration: none;
+  transition: all .5s ease;
+
+  &:hover, &:focus{
+    color: var(--color-dark-blue);
+    font-variation-settings: 'wght' 500;
+  }
+}
+
+.inline-icon{
+  margin-right:8px;
+  display: inline-block;
 }

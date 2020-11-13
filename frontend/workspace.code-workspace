@@ -4,7 +4,7 @@
       "path": "."
     },
     {
-      "path": "frontend"
+      "path": ".."
     }
   ],
   "settings": { /* "eslint.validate": [ { "language": "vue", "autoFix": true }, { "language": "html", "autoFix": true }, { "language": "javascript", "autoFix": true }, { "language": "typescript", "autoFix": true } ] */ }
