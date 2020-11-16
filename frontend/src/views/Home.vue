@@ -10,17 +10,55 @@
     </section>
 
     <section class="projects">
-      <section class="projects__title">
-        <div class="container">
-          <h2>Lergier Design</h2>
-        </div>
+      <section class="projects__category">
+        <section class="projects__title">
+          <div class="container">
+            <h2>Lergier Design</h2>
+          </div>
+        </section>
+        <section class="projects__section">
+          <div class="container">
+            <div class="grid">
+              <project-card
+                v-for="(item, index) in projects"
+                :key="index"
+                :project-data="item"
+                class="g-md-6"/>
+            </div>
+          </div>
+        </section>
       </section>
-      <section class="projects__section">
-        <div class="container">
-          <project-card v-for="(item, index) in projects" :key="index" :project-data="item"/>
-        </div>
+
+      <section class="projects__category">
+        <section class="projects__title">
+          <div class="container">
+            <h2>Hochschule Luzern - Digital Ideation</h2>
+          </div>
+        </section>
+        <section class="projects__section">
+          <div class="container">
+            <div class="grid">
+              <project-card
+                v-for="(item, index) in projects"
+                :key="index"
+                :project-data="item"
+                class="g-md-6"/>
+            </div>
+          </div>
+        </section>
       </section>
     </section>
+
+    <div class="container impressum">
+      <p>
+        <!-- eslint-disable-next-line max-len -->
+        This page was made as an individual mentoring project at my Digital Ideation Studies at Lucerne University of Applied Science and Arts HSLU.
+      </p>
+      <p>
+        <!-- eslint-disable-next-line max-len -->
+        The source code and more about this project can be found on my GitHub-Repository <custom-link link="https://github.com/andre-lergier/hslu-web-project-collection" external>andre-lergier/hslu-web-project-collection</custom-link>.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -28,6 +66,7 @@
 import { defineComponent } from 'vue';
 import Title from '@/components/Title.vue';
 import ProjectCard from '@/components/ProjectCard.vue';
+import CustomLink from '@/components/CustomLink.vue';
 
 import { ProjectData, Link, HighlightedTitle } from '../data-types';
 
@@ -36,6 +75,7 @@ export default defineComponent({
   components: {
     Title,
     ProjectCard,
+    CustomLink,
   },
   data() {
     return {
@@ -70,11 +110,29 @@ export default defineComponent({
           private: true,
           publicLink: {
             url: 'wb-architektur.ch',
-            tags: ['Hoststar'],
+            tags: ['Hoststar', 'Bitbucket'],
           } as Link,
           devLink: {
             url: 'wb-architektur.dev.lergier.ch',
-            tags: ['Netlify'],
+            tags: ['Netlify', 'Bitbucket'],
+          } as Link,
+          repository: {
+            platform: 'Bitbucket',
+            name: 'andrelergier/wegmueller_briggen',
+            url: 'https://bitbucket.org/andrelergier/wegmueller_briggen',
+          },
+        } as ProjectData,
+        {
+          title: 'wegmüller | briggen architektur ag',
+          year: 2020,
+          private: true,
+          publicLink: {
+            url: 'wb-architektur.ch',
+            tags: ['Hoststar', 'Bitbucket'],
+          } as Link,
+          devLink: {
+            url: 'wb-architektur.dev.lergier.ch',
+            tags: ['Netlify', 'Bitbucket'],
           } as Link,
           repository: {
             platform: 'Bitbucket',
@@ -88,6 +146,13 @@ export default defineComponent({
   mounted() {
     const test = 5;
     console.log(test);
+
+    const test2 = () => {
+      console.log('01234');
+      return 'Hallo';
+    };
+
+    test2();
   },
 });
 </script>
@@ -104,12 +169,22 @@ export default defineComponent({
 
 .projects{
   .projects__title{
-    margin-top:50px;
-    margin-bottom:15px;
+    margin-top:75px;
+    margin-bottom:20px;
   }
 
   .projects__section{
     background: var(--color-gray-light);
+    padding: 40px 0;
+
+    @media (max-width: 767.98px){
+      padding: 30px 0;
+    }
   }
+}
+
+.impressum{
+  margin-top: 100px;
+  margin-bottom:100px;
 }
 </style>

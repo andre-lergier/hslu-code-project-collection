@@ -1,6 +1,6 @@
 export interface Link {
   url: string;
-  tags?: [string];
+  tags?: string[];
 }
 
 export interface HighlightedTitle {

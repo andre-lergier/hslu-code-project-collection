@@ -19,10 +19,30 @@
 
     <div class="project-card__links">
       <div class="link">
-        <span class="link__label">Prod</span>
-        <CustomLink :link="projectData.publicLink.url">{{ projectData.publicLink.url }}</CustomLink>
-        <div class="tags">
-          <span v-for="(item, index) in projectData.publicLink.tags" :key="index">{{ item }}</span>
+        <span class="link__label">Prod:</span>
+        <div class="link__text-tag-wrapper">
+          <CustomLink :link="projectData.publicLink.url">
+            {{ projectData.publicLink.url }}
+          </CustomLink>
+          <div class="tags">
+            <span v-for="(item, index) in projectData.publicLink.tags" :key="index" class="tag">
+              {{ item }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="link" v-if="projectData.devLink">
+        <span class="link__label">Dev:</span>
+        <div class="link__text-tag-wrapper">
+          <CustomLink :link="projectData.devLink.url">
+            {{ projectData.devLink.url }}
+          </CustomLink>
+          <div class="tags">
+            <span v-for="(item, index) in projectData.devLink.tags" :key="index" class="tag">
+              {{ item }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -64,7 +84,6 @@ export default defineComponent({
 .project-card{
   background:white;
   border-radius:8px;
-  margin-bottom:25px;
   padding:18px;
 
   .project-card__header{
@@ -87,15 +106,41 @@ export default defineComponent({
   }
 
   .project-card__repository{
+    margin-top: 15px;
   }
 
   .project-card__links{
-    .link{
-      display:flex;
-    }
+    margin-top: 15px;
 
-    .link__label{
-      font-variation-settings: 'wght' 600;
+    .link{
+      display:grid;
+      grid-template-columns: 50px auto;
+
+      .link__label{
+        grid-column-start: 1;
+        font-variation-settings: 'wght' 600;
+      }
+
+      .link__text-tag-wrapper{
+        display:flex;
+        grid-column-start: 2;
+      }
+
+      .tags{
+        display:flex;
+        align-items: center;
+        margin-left:5px;
+
+        .tag{
+          font-size: .775rem;
+          color: var(--color-gray);
+          border: 1px solid var(--color-gray);
+          border-radius:50px;
+          line-height: 1;
+          padding: 2px 7px;
+          margin-left:5px;
+        }
+      }
     }
   }
 }
