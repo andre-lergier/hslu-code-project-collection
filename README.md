@@ -81,7 +81,8 @@ Those links helped me out to understand MongoDB:
 #### Tutorials:
 - [Using TypeScript with Vue Single File Components](https://www.digitalocean.com/community/tutorials/vuejs-using-typescript-with-vue)
 
-### Rest
+### Backend
+- https://www.robinwieruch.de/minimal-node-js-babel-setup
 
 ## Prototype
 For concept and design purposes I created a simple prototype using [Figma](https://www.figma.com/).  
