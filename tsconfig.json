@@ -19,7 +19,7 @@
     ],
     "paths": {
       "@/*": [
-        "src/*"
+        "frontend/src/*"
       ]
     },
     "lib": [
@@ -38,6 +38,7 @@
     "frontend/tests/**/*.tsx"
   ],
   "exclude": [
+    "frontend/node_modules",
     "node_modules"
   ]
 }
