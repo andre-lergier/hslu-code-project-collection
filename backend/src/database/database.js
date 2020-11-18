@@ -45,8 +45,8 @@ export default class Database {
     }
   }
 
-  async createProjectCollection(db) {
-    this.db.createCollection('projects', {
+  async createProjectCollection() {
+    return this.db.createCollection('projects2', {
       validator: {
         $jsonSchema: projectValidator,
       },
@@ -54,17 +54,19 @@ export default class Database {
   }
 
   async insertProject(project) {
-    try {
+    /* try {
       const collection = this.db.collection('projects');
       return await collection.insertOne(project);
     } catch (error) {
       console.log('catch block connectMongoDB:');
       console.error(error);
-    }
+    } */
+    const collection = this.db.collection('projects');
+    return collection.insertOne(project);
   }
 
-  async getProjects() {
-    return this.db.collection('projects').find({}).toArray();
+  async getProjects(query = {}) {
+    return this.db.collection('projects').find(query).toArray();
   }
 
   async dropProjects() {

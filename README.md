@@ -81,8 +81,32 @@ Those links helped me out to understand MongoDB:
 #### Tutorials:
 - [Using TypeScript with Vue Single File Components](https://www.digitalocean.com/community/tutorials/vuejs-using-typescript-with-vue)
 
-### Backend
+## Backend
 - https://www.robinwieruch.de/minimal-node-js-babel-setup
+- If using Typescript:
+  - [1 Setup REST API](https://levelup.gitconnected.com/setup-restful-api-with-node-js-express-mongodb-using-typescript-261959ef0998)
+  - [2 Project structure and Building Routes in REST API](https://levelup.gitconnected.com/project-structure-and-building-routes-of-restful-api-with-node-js-f3a8b53d94e7)
+- Simple Approach: https://medium.com/@onejohi/building-a-simple-rest-api-with-nodejs-and-express-da6273ed7ca9
+- https://medium.com/weekly-webtips/how-to-create-a-rest-api-with-express-js-and-node-js-3de5c5f9691c
+
+### REST
+- CRUD (Create, Read, Update, and Delete)
+
+#### Status Codes
+| Code | Status                |
+|------|-----------------------|
+| 200  | OK                    |
+| 404  | Not found             |
+| 500  | Internal Server Error |
+|      |                       |
+| 201  | Created               |
+| 204  | No Content            |
+| 304  | Modified              |
+| 400  | Bad Request           |
+| 401  | Unauthorized          |
+| 403  | Forbidden             |
+| 501  | Not Implemented       |
+
 
 ## Prototype
 For concept and design purposes I created a simple prototype using [Figma](https://www.figma.com/).  
