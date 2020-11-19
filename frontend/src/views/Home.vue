@@ -68,7 +68,7 @@ import Title from '@/components/Title.vue';
 import ProjectCard from '@/components/ProjectCard.vue';
 import CustomLink from '@/components/CustomLink.vue';
 
-import { ProjectData, Link, HighlightedTitle } from '../data-types';
+import { ProjectData, Link, HighlightedTitle } from '../types/data-types';
 
 export default defineComponent({
   name: 'Home',
@@ -147,7 +147,7 @@ export default defineComponent({
     const test = 5;
     console.log(test);
 
-    const test2 = () => {
+    const test2 = (): string => {
       console.log('01234');
       return 'Hallo';
     };

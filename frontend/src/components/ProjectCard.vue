@@ -53,7 +53,7 @@
 import { defineComponent, PropType } from 'vue';
 import CustomLink from '@/components/CustomLink.vue';
 
-import { ProjectData } from '../data-types';
+import { ProjectData } from '../types/data-types';
 
 export default defineComponent({
   name: 'ProjectCard',

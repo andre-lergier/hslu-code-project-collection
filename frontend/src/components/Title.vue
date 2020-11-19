@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { HighlightedTitle } from '../data-types';
+import { HighlightedTitle } from '../types/data-types';
 
 export default defineComponent({
   name: 'Title',
