@@ -8,7 +8,7 @@ const database = new Database();
   await database.connectMongoDB();
 
   const app = express();
-  const port = process.env.API_PORT || 4433;
+  const port = process.env.PORT || 4433;
 
   // parse application/x-www-form-urlencoded
   app.use(bodyParser.urlencoded({ extended: false }));
