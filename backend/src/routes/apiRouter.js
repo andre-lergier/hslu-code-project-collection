@@ -1,15 +1,20 @@
 import express from 'express';
 
-import ProjectRoutes from './projectsRoutes.js';
-import * as data from './../data/projects.js'
+import ProjectRoutes from './project.js';
+import UserRoutes from './user.js';
 
-export default class Router {
+export default class APIRouter {
   constructor(database) {
     this.router = express.Router();
-    this.database = database;
 
-    const projectRoutes = new ProjectRoutes(this.router);
+    /* this.router.get('/', (request, res) => {
+      res.status(200).send({ success: 'true', status: 'API Works', message: 'Welcome to Rest API' });
+    }); */
 
+    this.projectRoutes = new ProjectRoutes(database);
+    this.userRoutes = new UserRoutes(database);
+
+    /*
     this.router.get('/projects', (request, response) => {
       const result = database.getProjects().then((resolve, reject) => {
         response.send({
@@ -18,14 +23,7 @@ export default class Router {
           projects: resolve,
         });
       });
-
-      /* const result = await database.getProjects();
-      response.send({
-        success: 'true',
-        message: 'projects',
-        projects: result
-      }); */
-    });
+    }); /*
 
     this.router.get('/projects/:url', (request, response) => {
       const query = { 'publicLink.url': `${request.params.url}` };
@@ -37,9 +35,10 @@ export default class Router {
           projects: resolve,
         });
       });
-    });
+    }); */
 
-    this.router.post('/addProject', (request, response) => {
+    /*
+    this.router.post('/addProject', async (request, response) => {
       if (!request.body.title) {
         return response.status(400).send({ success: 'false', message: 'name is required' });
       }
@@ -47,26 +46,26 @@ export default class Router {
       let project = data.wb;
       project = request.body;
 
-      database.insertProject(project).then((resolve) => {
+      /* database.insertProject(project).then((result) => {
         response.status(201).send({
           success: 'true',
           message: 'project added successfully',
           project: project.title,
         });
-      }).catch((reject) => {
-        response.status(400).send({ success: 'false', message: reject })
-      });
-
-      /* try {
-        database.insertProject(project);
+      }).catch((error) => {
+        response.status(400).send({ success: 'false', message: error });
+      }); */
+    /*
+      try {
+        const res = await database.insertProject(project);
         return response.status(201).send({
           success: 'true',
           message: 'project added successfully',
-          project: project.title,
-        })
+          project: res.insertedId,
+        });
       } catch (error) {
         return response.status(400).send({ success: 'false', message: error });
-      } */
-    });
+      }
+    }); */
   }
 }

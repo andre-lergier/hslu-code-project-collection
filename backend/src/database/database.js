@@ -11,6 +11,13 @@ export default class Database {
     this.MongoClient = mongodb.MongoClient;
     this.uri = `mongodb+srv://${this.user}:${this.password}@${this.mongoUrl}/${this.databaseName}?retryWrites=true&w=majority`;
     this.db = undefined;
+
+    // this.init();
+  }
+
+  async init() {
+    await this.connectMongoDB();
+    await this.listCollections();
   }
 
   async connectMongoDB() {
@@ -53,7 +60,7 @@ export default class Database {
     });
   }
 
-  async insertProject(project) {
+  insertProject(project) {
     /* try {
       const collection = this.db.collection('projects');
       return await collection.insertOne(project);
