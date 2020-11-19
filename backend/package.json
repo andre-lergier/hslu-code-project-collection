@@ -9,9 +9,12 @@
   },
   "scripts": {
     "dev": "nodemon --exec babel-node index.js --presets babel-preset-env",
-    "test": "npx babel-node -r dotenv/config index.js --presets babel-preset-env",
-    "build": "node babel-node index.js --presets babel-preset-env",
-    "start": "node index.js"
+    "clean": "rm -rf dist && mkdir dist",
+    "build-babel-test": "npx babel index.js --out-file ./dist/index.js -s --presets=@babel/preset-env && npx babel src --out-dir ./dist/src -s --presets=@babel/preset-env",
+    "build-babel": "npx babel index.js --out-file index-comp.js -s --presets=@babel/preset-env",
+    "build-test": "npm run clean && npm run build-babel",
+    "start-test": "node -r dotenv/config index.js --presets=@babel/preset-en",
+    "start": "node index.js --presets=@babel/preset-en"
   },
   "repository": {
     "type": "git",
@@ -28,10 +31,11 @@
     "mongodb": "^3.6.3"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
+    "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
     "@babel/node": "^7.12.6",
     "@babel/preset-env": "^7.12.1",
+    "babel-eslint": "^10.1.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.2.1",
