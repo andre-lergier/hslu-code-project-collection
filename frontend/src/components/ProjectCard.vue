@@ -18,33 +18,9 @@
     </div>
 
     <div class="project-card__links">
-      <div class="link">
-        <span class="link__label">Prod:</span>
-        <div class="link__text-tag-wrapper">
-          <CustomLink :link="projectData.publicLink.url">
-            {{ projectData.publicLink.url }}
-          </CustomLink>
-          <div class="tags">
-            <span v-for="(item, index) in projectData.publicLink.tags" :key="index" class="tag">
-              {{ item }}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="link" v-if="projectData.devLink">
-        <span class="link__label">Dev:</span>
-        <div class="link__text-tag-wrapper">
-          <CustomLink :link="projectData.devLink.url">
-            {{ projectData.devLink.url }}
-          </CustomLink>
-          <div class="tags">
-            <span v-for="(item, index) in projectData.devLink.tags" :key="index" class="tag">
-              {{ item }}
-            </span>
-          </div>
-        </div>
-      </div>
+      <tag-link v-if="projectData.publicLink" :linkData="projectData.publicLink" label="Prod" />
+      <tag-link v-if="projectData.devLink" :linkData="projectData.devLink" label="Dev" />
+      <tag-link v-if="projectData.database" :linkData="projectData.database" label="DB" />
     </div>
   </article>
 </template>
@@ -52,6 +28,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import CustomLink from '@/components/CustomLink.vue';
+import TagLink from '@/components/TagLink.vue';
 
 import { ProjectData } from '../types/data-types';
 
@@ -59,6 +36,7 @@ export default defineComponent({
   name: 'ProjectCard',
   components: {
     CustomLink,
+    TagLink,
   },
   props: {
     callback: {

@@ -4,8 +4,12 @@
   "description": "Mentoring project at Lucerne University of Applied Sciences and Arts HSLU",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cd frontend && npm run serve",
-    "build": "cd frontend && npm run build"
+    "frontend": "cd frontend && npm run serve",
+    "frontend-build": "cd frontend && npm run build && cd dist && live-server",
+    "backend": "cd backend && npm run dev",
+    "backend-build": "cd backend && npm run start-local",
+    "dev": "npm run frontend && npm run backend",
+    "build": "npm run frontend-build && npm run backend-build"
   },
   "repository": {
     "type": "git",

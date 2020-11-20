@@ -15,9 +15,9 @@ export default class ProjectControllers {
       console.log('Error ProjectsControllers get');
       console.error(error);
 
-      return response.status(500).send({
+      return response.status(400).send({
         success: 'false',
-        error,
+        error: error.toString(),
       });
     }
   }
@@ -36,17 +36,17 @@ export default class ProjectControllers {
       console.log('Error ProjectsControllers getSingle');
       console.error(error);
 
-      return response.status(500).send({
+      return response.status(400).send({
         success: 'false',
-        error,
+        error: error.toString(),
       });
     }
   }
 
   async create(request, response) {
-    if (!request.body.title) {
+    /* if (!request.body.title) {
       return response.status(400).send({ success: 'false', message: 'name is required' });
-    }
+    } */
 
     const project = request.body; // data.wb
 
@@ -58,9 +58,9 @@ export default class ProjectControllers {
         project: result.insertedId,
       });
     } catch (error) {
-      return response.status(500).send({
+      return response.status(400).send({
         success: 'false',
-        error,
+        error: error.toString(),
       });
     }
   }

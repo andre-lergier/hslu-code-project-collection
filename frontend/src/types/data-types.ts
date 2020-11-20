@@ -1,5 +1,6 @@
 export interface Link {
   url: string;
+  title?: string;
   tags?: string[];
 }
 
@@ -22,4 +23,6 @@ export interface ProjectData {
     name: string;
     url: string;
   };
+
+  database?: Link;
 }

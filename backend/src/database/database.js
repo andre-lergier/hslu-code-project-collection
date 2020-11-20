@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 import mongodb from 'mongodb';
 import { projectValidator } from './validators.js';
+import projects from '../data/projects.js';
 
 export default class Database {
   constructor() {
@@ -38,10 +40,11 @@ export default class Database {
     } catch (error) {
       console.log('catch block connectMongoDB:');
       console.error(error);
+      throw error;
     }
   }
 
-  async listCollections() {
+  listCollections() {
     try {
       return this.db.listCollections()
         .toArray() // Returns a promise that will resolve to the list of the collections
@@ -49,11 +52,12 @@ export default class Database {
     } catch (error) {
       console.log('catch block connectMongoDB:');
       console.error(error);
+      return error;
     }
   }
 
-  async createProjectCollection() {
-    return this.db.createCollection('projects2', {
+  createProjectCollection() {
+    return this.db.createCollection('projects', {
       validator: {
         $jsonSchema: projectValidator,
       },
@@ -61,22 +65,26 @@ export default class Database {
   }
 
   insertProject(project) {
-    /* try {
-      const collection = this.db.collection('projects');
-      return await collection.insertOne(project);
-    } catch (error) {
-      console.log('catch block connectMongoDB:');
-      console.error(error);
-    } */
     const collection = this.db.collection('projects');
     return collection.insertOne(project);
   }
 
-  async getProjects(query = {}) {
+  getProjects(query = {}) {
     return this.db.collection('projects').find(query).toArray();
   }
 
-  async dropProjects() {
+  dropProjects() {
     return this.db.collection('projects').deleteMany({});
+  }
+
+  async initDefaultProjects() {
+    try {
+      const collection = this.db.collection('projects');
+      return await collection.insertMany(projects);
+    } catch (error) {
+      console.log('catch block connectMongoDB:');
+      console.error(error);
+      return error;
+    }
   }
 }

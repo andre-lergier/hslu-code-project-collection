@@ -82,12 +82,23 @@ Those links helped me out to understand MongoDB:
 - [Using TypeScript with Vue Single File Components](https://www.digitalocean.com/community/tutorials/vuejs-using-typescript-with-vue)
 
 ## Backend
-- https://www.robinwieruch.de/minimal-node-js-babel-setup
-- If using Typescript:
-  - [1 Setup REST API](https://levelup.gitconnected.com/setup-restful-api-with-node-js-express-mongodb-using-typescript-261959ef0998)
-  - [2 Project structure and Building Routes in REST API](https://levelup.gitconnected.com/project-structure-and-building-routes-of-restful-api-with-node-js-f3a8b53d94e7)
+### Tutorials
+__If using Typescript:__  
+- [1 Setup REST API](https://levelup.gitconnected.com/setup-restful-api-with-node-js-express-mongodb-using-typescript-261959ef0998)
+- [2 Project structure and Building Routes in REST API](https://levelup.gitconnected.com/project-structure-and-building-routes-of-restful-api-with-node-js-f3a8b53d94e7)  
+
+
 - Simple Approach: https://medium.com/@onejohi/building-a-simple-rest-api-with-nodejs-and-express-da6273ed7ca9
-- https://medium.com/weekly-webtips/how-to-create-a-rest-api-with-express-js-and-node-js-3de5c5f9691c
+- https://medium.com/weekly-webtips/how-to-create-a-rest-api-with-express-js-and-node-js-3de5c5f9691c  
+
+
+__Tutorial Series from Robin Wieruch:__
+- [The minimal Node.js with Babel Setup](https://www.robinwieruch.de/minimal-node-js-babel-setup)
+- [How to setup Express.js in Node.js](https://www.robinwieruch.de/node-js-express-tutorial)
+- [How to create a REST API with Express.js in Node.js](https://www.robinwieruch.de/node-express-server-rest-api)
+- [Setup MongoDB with Mongoose in Express](https://www.robinwieruch.de/mongodb-express-setup-tutorial/)
+- [Creating a REST API with Express.js and MongoDB](https://www.robinwieruch.de/mongodb-express-node-rest-api/)
+- [How to handle errors in Express](https://www.robinwieruch.de/node-express-error-handling)
 
 ### REST
 - CRUD (Create, Read, Update, and Delete)

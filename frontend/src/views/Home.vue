@@ -64,9 +64,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import axios from 'axios';
 import Title from '@/components/Title.vue';
 import ProjectCard from '@/components/ProjectCard.vue';
 import CustomLink from '@/components/CustomLink.vue';
+import api from '@/modules/api';
 
 import { ProjectData, Link, HighlightedTitle } from '../types/data-types';
 
@@ -122,28 +124,10 @@ export default defineComponent({
             url: 'https://bitbucket.org/andrelergier/wegmueller_briggen',
           },
         } as ProjectData,
-        {
-          title: 'wegmüller | briggen architektur ag',
-          year: 2020,
-          private: true,
-          publicLink: {
-            url: 'wb-architektur.ch',
-            tags: ['Hoststar', 'Bitbucket'],
-          } as Link,
-          devLink: {
-            url: 'wb-architektur.dev.lergier.ch',
-            tags: ['Netlify', 'Bitbucket'],
-          } as Link,
-          repository: {
-            platform: 'Bitbucket',
-            name: 'andrelergier/wegmueller_briggen',
-            url: 'https://bitbucket.org/andrelergier/wegmueller_briggen',
-          },
-        } as ProjectData,
       ],
     };
   },
-  mounted() {
+  async mounted() {
     const test = 5;
     console.log(test);
 
@@ -151,6 +135,15 @@ export default defineComponent({
       console.log('01234');
       return 'Hallo';
     };
+
+    api.get('/projects')
+      .then((response) => {
+        this.projects = response.data.projects;
+        console.log(response);
+      });
+
+    const res = await axios.get('http://localhost:4433/projects');
+    console.log(res);
 
     test2();
   },
