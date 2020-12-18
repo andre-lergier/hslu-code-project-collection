@@ -1,5 +1,4 @@
 import express from 'express';
-
 import ProjectControllers from '../controllers/project.js';
 
 export default class ProjectRoutes {

@@ -3,7 +3,7 @@
     <nav>
       <ul>
         <li>
-          <a href="https://lergier.ch/?ref=code">lergier.ch</a>
+          <a href="https://lergier.ch/?ref=code" target="_blank">lergier.ch</a>
         </li>
 
         <li>

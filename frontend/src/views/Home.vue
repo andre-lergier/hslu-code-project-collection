@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div :class="['home', {'loading': loading}]">
     <section class="intro">
       <div class="container">
         <Title :title="title" :subtitle="subtitle" />
@@ -64,7 +64,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import axios from 'axios';
 import Title from '@/components/Title.vue';
 import ProjectCard from '@/components/ProjectCard.vue';
 import CustomLink from '@/components/CustomLink.vue';
@@ -87,65 +86,25 @@ export default defineComponent({
       } as HighlightedTitle,
       subtitle: 'by André Lergier | lergier.ch',
       introduction: 'It’s hard to keep track of all code projects stored on different plattforms, published under several subdomains, or deployed on various hostings. This overview is the solution for this problem and meakes it easy to find all code projects with their associated repository and links. To see private projects it’s madatory to be logged in.',
-      projects: [
-        {
-          title: 'Fuchs + Partner Treuhand AG',
-          year: 2020,
-          private: true,
-          publicLink: {
-            url: 'fuchspartner.ch',
-            tags: ['Xmedia ag'],
-          } as Link,
-          devLink: {
-            url: 'fuchspartner.dev.lergier.ch',
-            tags: ['Netlify'],
-          } as Link,
-          repository: {
-            platform: 'GitHub',
-            name: 'andre-lergier/fuchs-partner',
-            url: 'https://github.com/andre-lergier/fuchs-partner',
-          },
-        } as ProjectData,
-        {
-          title: 'wegmüller | briggen architektur ag',
-          year: 2020,
-          private: true,
-          publicLink: {
-            url: 'wb-architektur.ch',
-            tags: ['Hoststar', 'Bitbucket'],
-          } as Link,
-          devLink: {
-            url: 'wb-architektur.dev.lergier.ch',
-            tags: ['Netlify', 'Bitbucket'],
-          } as Link,
-          repository: {
-            platform: 'Bitbucket',
-            name: 'andrelergier/wegmueller_briggen',
-            url: 'https://bitbucket.org/andrelergier/wegmueller_briggen',
-          },
-        } as ProjectData,
-      ],
+      projects: [],
+      loading: true,
+      errored: false,
     };
   },
-  async mounted() {
-    const test = 5;
-    console.log(test);
-
-    const test2 = (): string => {
-      console.log('01234');
-      return 'Hallo';
-    };
-
-    api.get('/projects')
+  mounted() {
+    api.get('/projects') // same as axios.get('http://localhost:4433/projects');
       .then((response) => {
         this.projects = response.data.projects;
         console.log(response);
+      })
+      .catch((error) => {
+        console.log('catch view get');
+        console.error(error);
+        this.errored = true;
+      }).finally(() => {
+        console.log('finally');
+        this.loading = false;
       });
-
-    const res = await axios.get('http://localhost:4433/projects');
-    console.log(res);
-
-    test2();
   },
 });
 </script>

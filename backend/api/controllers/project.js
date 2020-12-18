@@ -6,8 +6,8 @@ export default class ProjectControllers {
   async get(request, response) {
     try {
       const result = await this.database.getProjects();
-      return response.status(201).send({
-        success: 'true',
+      return response.status(200).json({
+        success: true,
         message: 'projects',
         projects: result,
       });
@@ -15,9 +15,10 @@ export default class ProjectControllers {
       console.log('Error ProjectsControllers get');
       console.error(error);
 
-      return response.status(400).send({
-        success: 'false',
-        error: error.toString(),
+      return response.status(400).json({
+        success: false,
+        message: error.toString(),
+        error,
       });
     }
   }
@@ -27,8 +28,8 @@ export default class ProjectControllers {
 
     try {
       const result = await this.database.getProjects(query);
-      return response.status(201).send({
-        success: 'true',
+      return response.status(200).json({
+        success: true,
         message: 'project',
         projects: result,
       });
@@ -36,31 +37,32 @@ export default class ProjectControllers {
       console.log('Error ProjectsControllers getSingle');
       console.error(error);
 
-      return response.status(400).send({
-        success: 'false',
-        error: error.toString(),
+      return response.status(400).json({
+        success: false,
+        message: error.toString(),
+        error,
       });
     }
   }
 
   async create(request, response) {
     /* if (!request.body.title) {
-      return response.status(400).send({ success: 'false', message: 'name is required' });
+      return response.status(400).json({ success: false, message: 'name is required' });
     } */
 
     const project = request.body; // data.wb
 
     try {
       const result = await this.database.insertProject(project);
-      return response.status(201).send({
-        success: 'true',
+      return response.status(201).json({
+        success: true,
         message: 'project added successfully',
         project: result.insertedId,
       });
     } catch (error) {
-      return response.status(400).send({
-        success: 'false',
-        error: error.toString(),
+      return response.status(400).json({
+        success: false,
+        message: error.toString(),
       });
     }
   }
