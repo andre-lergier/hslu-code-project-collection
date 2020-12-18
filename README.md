@@ -45,6 +45,10 @@ npm run lint
 ```
 
 ---
+__Page:__ [code.lergier.ch](https://code.lergier.ch)
+__API:__ [api.code.lergier.ch](http://api.code.lergier.ch)
+__API HTTPS:__ [hslu-code-project-collection.herokuapp.com](https://hslu-code-project-collection.herokuapp.com/)
+---
 
 # Documentation
 

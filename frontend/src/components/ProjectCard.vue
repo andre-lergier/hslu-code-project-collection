@@ -10,7 +10,7 @@
       <span class="year" v-if="projectData.year">{{ projectData.year }}</span>
     </div>
 
-    <div class="project-card__repository">
+    <div class="project-card__repository" v-if="projectData.repository">
       <font-awesome-icon class="inline-icon" :icon="['fab', platformIcon]" />
        <CustomLink :link="projectData.repository.url" title="Repository anzeigen" external>
         {{ projectData.repository.name }}
@@ -52,7 +52,7 @@ export default defineComponent({
   },
   computed: {
     platformIcon(): string {
-      return this.projectData.repository.platform.toLowerCase();
+      return this.projectData?.repository.platform.toLowerCase();
     },
   },
 });

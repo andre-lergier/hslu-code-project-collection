@@ -4,20 +4,20 @@ export default (request, response, next) => {
   const authorizationHeader = request.get('Authorization');
 
   if (!authorizationHeader) {
-    console.log('No Authorization Header provided.');
+    console.log('No Authorization Header provided');
 
     request.isAuth = false;
-    request.authMessage = 'No Authorization Header provided.';
+    request.authMessage = 'No Authorization Header provided';
 
     return next();
   }
 
   const token = authorizationHeader.replace('Bearer ', '');
   if (!token || token === '') {
-    console.log('No token provided.');
+    console.log('No token provided');
 
     request.isAuth = false;
-    request.authMessage = 'No token provided.';
+    request.authMessage = 'No token provided';
 
     return next();
   }

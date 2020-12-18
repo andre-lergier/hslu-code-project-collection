@@ -21,10 +21,9 @@ app.use(cors({
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
 }));
 
-// Mittleware
+// set authorization to false
 app.use((req, res, next) => {
-  // do something
-  req.test = 123;
+  req.isAuth = false;
   next();
 });
 

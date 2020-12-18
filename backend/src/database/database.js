@@ -80,8 +80,26 @@ export default class Database {
     return collection.insertOne(project);
   }
 
-  getProjects(query = {}) {
-    return this.db.collection('projects').find(query).toArray();
+  getProjects(query = {}, authorized = false) {
+    let options = {};
+
+    if (!authorized) {
+      options = {
+        projection: {
+          title: 1, year: 1, 'publicLink.url': 1,
+        },
+      };
+    }
+
+    return this.db.collection('projects').find(query, options).toArray();
+  }
+
+  getProjectById(id) {
+    return this.getProjects({ _id: mongodb.ObjectID(id) });
+  }
+
+  deleteProject(id) {
+    return this.db.collection('projects').deleteOne({ _id: mongodb.ObjectID(id) });
   }
 
   dropProjects() {
@@ -104,8 +122,24 @@ export default class Database {
         projection: { password: 0 },
       };
     }
-    const collection = this.db.collection('users');
-    return collection.findOne({ email }, options);
+
+    return this.db.collection('users').findOne({ email }, options);
+  }
+
+  getUserById(id, sendPassword = false) {
+    let options = {};
+
+    if (!sendPassword) {
+      options = {
+        projection: { password: 0 },
+      };
+    }
+
+    return this.db.collection('users').findOne({ _id: mongodb.ObjectID(id) }, options);
+  }
+
+  deleteUser(id) {
+    return this.db.collection('users').deleteOne({ _id: mongodb.ObjectID(id) });
   }
 
   dropUsers() {

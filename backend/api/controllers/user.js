@@ -8,36 +8,11 @@ export default class UserControllers {
     this.database = database;
   }
 
-  async get(request, response) {
-    try {
-      const result = await this.database.getProjects();
-      return response.status(201).send({
-        success: true,
-        message: 'users',
-        projects: result,
-      });
-    } catch (error) {
-      console.log('Error UserControllers get');
-      console.error(error);
-
-      return response.status(400).send({
-        success: false,
-        error,
-      });
-    }
-  }
-
   async getSingle(request, response) {
     // email from url
     const { email } = request.params;
 
     // make sure to only return user data to logged in user
-    /* if (!request.isAuth) {
-      return response.status(401).json({
-        success: false,
-        message: 'Not aaauthorized to get this information.',
-      });
-    } */
     if (email !== request?.userEmail) {
       return response.status(401).json({
         success: false,
@@ -65,8 +40,8 @@ export default class UserControllers {
 
   async create(request, response) {
     const user = request.body;
-
     const { name, email, password } = user;
+
     const hashedPassword = await HashedPassword.hash(password);
 
     const doc = {
@@ -111,8 +86,6 @@ export default class UserControllers {
 
     try {
       const user = await this.database.getUser(email, true);
-      // const pwMatch = user ? user.password === password : false;
-
       const pwMatch = user ? await bcrypt.compare(password, user.password) : false;
 
       if (user && pwMatch && user.authorizedByAdmin) {
@@ -146,6 +119,38 @@ export default class UserControllers {
         success: false,
         message: 'Authentication failed',
         error: error.toString(),
+      });
+    }
+  }
+
+  async delete(request, response) {
+    const { id } = request.params;
+
+    if (!request.isAuth) {
+      return response.status(401).json({
+        success: false,
+        message: 'Not authorized toperform this action',
+      });
+    }
+
+    const checkUser = await this.database.getUserById(id);
+    if (!checkUser) {
+      return response.status(404).json({
+        success: false,
+        message: 'User does not exist',
+      });
+    }
+
+    try {
+      const result = await this.database.deleteUser(id);
+      return response.status(200).json({
+        success: true,
+        message: `${result.deletedCount} user successfully deleted`,
+      });
+    } catch (error) {
+      return response.status(400).json({
+        success: false,
+        message: error.toString(),
       });
     }
   }
