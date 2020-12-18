@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 export default class AuthToken {
-  static secretKey = process.env.JWT_PRIVATEKEY
+  static secretKey = process.env.JWT_PRIVATEKEY || 'samplePrivateKey';
 
   static signAlgorithm = 'HS256';
 
