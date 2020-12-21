@@ -1,6 +1,10 @@
 <template>
-  <h1>
-    <span><span class="highlighted">{{ title.highlighted }}</span> {{ title.append }}</span>
+  <h1 :class="{ 'small': small }">
+    <span>
+      <span v-if="title.prepend">{{ title.prepend }}</span>
+      <span class="highlighted">{{ title.highlighted }}</span>
+      <span v-if="title.append"> {{ title.append }}</span>
+    </span>
     <small>{{ subtitle }}</small>
   </h1>
 </template>
@@ -20,6 +24,11 @@ export default defineComponent({
       required: true,
     },
     subtitle: String,
+    small: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 });
 </script>
@@ -30,6 +39,13 @@ h1{
   flex-direction: column;
   font-size: 3.5rem;
   margin-bottom:55px;
+
+  &.small{
+    font-size: 2.25rem;
+    font-variation-settings: "wght" 600;
+    margin-bottom:15px;
+    margin-top:10px;
+  }
 
   small{
     font-size: 1rem;
@@ -45,6 +61,7 @@ h1{
   .highlighted{
     position:relative;
     display: inline-block;
+    z-index:1;
 
     &::after{
       content:'';
@@ -56,6 +73,7 @@ h1{
       right:-5px;
       z-index:-1;
       background: var(--color-yellow);
+      opacity:.75;
     }
   }
 }

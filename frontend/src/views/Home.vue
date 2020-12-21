@@ -9,7 +9,7 @@
       </div>
     </section>
 
-    <section class="projects">
+    <section v-if="!errored" class="projects">
       <section class="projects__category">
         <section class="projects__title">
           <div class="container">
@@ -28,26 +28,10 @@
           </div>
         </section>
       </section>
-
-      <section class="projects__category">
-        <section class="projects__title">
-          <div class="container">
-            <h2>Hochschule Luzern - Digital Ideation</h2>
-          </div>
-        </section>
-        <section class="projects__section">
-          <div class="container">
-            <div class="grid">
-              <project-card
-                v-for="(item, index) in projects"
-                :key="index"
-                :project-data="item"
-                class="g-md-6"/>
-            </div>
-          </div>
-        </section>
-      </section>
     </section>
+    <div v-else class="container">
+      <error-banner :error="errorDetails" />
+    </div>
 
     <div class="container impressum">
       <p>
@@ -67,9 +51,10 @@ import { defineComponent } from 'vue';
 import Title from '@/components/Title.vue';
 import ProjectCard from '@/components/ProjectCard.vue';
 import CustomLink from '@/components/CustomLink.vue';
+import ErrorBanner from '@/components/ErrorBanner.vue';
 import api from '@/modules/api';
 
-import { ProjectData, Link, HighlightedTitle } from '../types/data-types';
+import { HighlightedTitle } from '../types/data-types';
 
 export default defineComponent({
   name: 'Home',
@@ -77,6 +62,7 @@ export default defineComponent({
     Title,
     ProjectCard,
     CustomLink,
+    ErrorBanner,
   },
   data() {
     return {
@@ -89,6 +75,7 @@ export default defineComponent({
       projects: [],
       loading: true,
       errored: false,
+      errorDetails: {},
     };
   },
   mounted() {
@@ -101,8 +88,8 @@ export default defineComponent({
         console.log('catch view get');
         console.error(error);
         this.errored = true;
+        this.errorDetails = error;
       }).finally(() => {
-        console.log('finally');
         this.loading = false;
       });
   },

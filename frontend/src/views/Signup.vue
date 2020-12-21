@@ -4,11 +4,25 @@
       <Title :title="title" small />
 
       <form autocomplete="off">
+        <div class="grid">
+          <FormInputText
+            class="g-md-6"
+            label="Firstname"
+            v-model.trim="name.firstname"
+            placeholder="Max"
+          />
+          <FormInputText
+            class="g-md-6"
+            label="Name"
+            v-model.trim="name.familyname"
+            placeholder="Muster"
+          />
+        </div>
         <FormInputText
           label="Email"
           type="email"
           v-model.trim="email"
-          placeholder="name@domain.ch"
+          placeholder="max@muster.ch"
         />
         <FormInputText
           label="Password"
@@ -16,8 +30,8 @@
           v-model.trim="password"
           placeholder="••••••••"
         />
-        <Button submit large type="primary">Login</Button>
-        <Button to="/signup" large type="text">Request Account</Button>
+        <Button submit large type="primary">Request Account</Button>
+        <Button to="/login" large type="text">Login</Button>
       </form>
       {{ email }}
       {{ password }}
@@ -35,7 +49,7 @@ import Title from '@/components/Title.vue';
 import { HighlightedTitle } from '../types/data-types';
 
 export default defineComponent({
-  name: 'Login',
+  name: 'Signup',
   components: {
     FormInputText,
     Button,
@@ -45,11 +59,15 @@ export default defineComponent({
   },
   data() {
     return {
+      name: {
+        firstname: '',
+        familyname: '',
+      },
       email: '',
       password: '',
       title: {
-        highlighted: 'Login',
-        append: '',
+        prepend: 'Request ',
+        highlighted: 'Account',
       } as HighlightedTitle,
     };
   },

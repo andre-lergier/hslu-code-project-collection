@@ -6,7 +6,15 @@ export interface Link {
 
 export interface HighlightedTitle {
   highlighted: string;
-  append: string;
+  prepend?: string;
+  append?: string;
+}
+
+export interface Error {
+  name: string;
+  message: string;
+  errorDetails?: object;
+  config?: object;
 }
 
 export interface ProjectData {

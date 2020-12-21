@@ -9,6 +9,8 @@
   --color-blue: #1A628A;
   --color-dark-blue: #26495E;
   --color-gray: #707070;
+  --color-gray-dark: #242424;
+  --color-text: var(--color-gray-dark);
   --color-text-light: var(--color-gray);
   --color-link: var(--color-blue);
   --color-gray-light: #f4f4f4;
@@ -26,6 +28,7 @@ body{
   font-size: 1rem;
   line-height: 1.5;
   font-variation-settings: 'wght' 400;
+  color: var(--color-text);
   -webkit-tap-highlight-color: transparent;
 
 }
@@ -54,10 +57,10 @@ a{
   color: var(--color-link);
   text-decoration: none;
   transition: all .5s ease;
+  font-variation-settings: 'wght' 450;
 
   &:hover, &:focus{
     color: var(--color-dark-blue);
-    font-variation-settings: 'wght' 500;
   }
 }
 
