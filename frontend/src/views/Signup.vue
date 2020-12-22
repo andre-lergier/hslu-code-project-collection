@@ -3,38 +3,63 @@
     <section class="login-window">
       <Title :title="title" small />
 
-      <form autocomplete="off">
-        <div class="grid">
+      <template  v-if="!success.state">
+        <form @submit.prevent="signupHandler">
+          <div class="grid">
+            <FormInputText
+              class="g-md-6"
+              label="Firstname"
+              v-model.trim="fields.firstname.value"
+              placeholder="Max"
+              :error="fields.firstname.error"
+            />
+            <FormInputText
+              class="g-md-6"
+              label="Name"
+              v-model.trim="fields.familyname.value"
+              placeholder="Muster"
+              :error="fields.familyname.error"
+            />
+          </div>
+
+          <FormInputText
+            class="mt"
+            label="Email"
+            type="email"
+            v-model.trim="fields.email.value"
+            placeholder="name@domain.ch"
+            :error="fields.email.error"
+          />
+
           <FormInputText
             class="g-md-6"
-            label="Firstname"
-            v-model.trim="name.firstname"
-            placeholder="Max"
+            label="Password"
+            type="password"
+            v-model.trim="fields.password.value"
+            placeholder="••••••••"
+            autocomplete="new-password"
+            :error="fields.password.error"
           />
-          <FormInputText
+          <!-- <FormInputText
             class="g-md-6"
-            label="Name"
-            v-model.trim="name.familyname"
-            placeholder="Muster"
-          />
-        </div>
-        <FormInputText
-          label="Email"
-          type="email"
-          v-model.trim="email"
-          placeholder="max@muster.ch"
-        />
-        <FormInputText
-          label="Password"
-          type="password"
-          v-model.trim="password"
-          placeholder="••••••••"
-        />
-        <Button submit large type="primary">Request Account</Button>
-        <Button to="/login" large type="text">Login</Button>
-      </form>
-      {{ email }}
-      {{ password }}
+            label="Repeat Password"
+            type="password"
+            v-model.lazy="fields.passwordConfirmation.value"
+            placeholder="••••••••"
+            autocomplete="new-password"
+            :error="passwordConfirmationError"
+          /> -->
+
+          <Callout :content="error" />
+
+          <Button submit large type="primary">Request Account</Button>
+          <Button to="/login" large type="text">Login</Button>
+        </form>
+      </template>
+
+      <template v-else>
+        <Callout :content="success.content" type="success" />
+      </template>
     </section>
   </div>
 </template>
@@ -45,8 +70,13 @@ import { defineComponent } from 'vue';
 import FormInputText from '@/components/FormInputText.vue';
 import Button from '@/components/Button.vue';
 import Title from '@/components/Title.vue';
+import Callout from '@/components/Callout.vue';
+import api from '@/modules/api';
 
-import { HighlightedTitle } from '../types/data-types';
+import Validation from '@/modules/validation';
+import {
+  HighlightedTitle, CalloutContent, FieldsObject,
+} from '@/types/data-types';
 
 export default defineComponent({
   name: 'Signup',
@@ -54,24 +84,99 @@ export default defineComponent({
     FormInputText,
     Button,
     Title,
+    Callout,
   },
   props: {
   },
   data() {
     return {
-      name: {
-        firstname: '',
-        familyname: '',
-      },
-      email: '',
-      password: '',
+      fields: {
+        firstname: {
+          value: '',
+          error: '',
+        },
+        familyname: {
+          value: '',
+          error: '',
+        },
+        email: {
+          value: '',
+          error: '',
+        },
+        password: {
+          value: '',
+          error: '',
+        },
+        passwordConfirmation: {
+          value: '',
+          error: '',
+        },
+      } as FieldsObject,
       title: {
         prepend: 'Request ',
         highlighted: 'Account',
       } as HighlightedTitle,
+      error: {},
+      fullError: {},
+      success: {
+        state: false,
+        content: {},
+      },
     };
   },
-  computed: {},
+  computed: {
+    /* passwordConfirmationError(): string {
+      if (this.fields.password.value !== '' && this.fields.passwordConfirmation.value !== '') {
+        if (this.fields.password.value !== this.fields.passwordConfirmation.value) {
+          return 'Password doesn\'t match.';
+        }
+      }
+      return '';
+    }, */
+  },
+  methods: {
+    async signupHandler() {
+      // clean up errors
+      // eslint-disable-next-line no-restricted-syntax, guard-for-in
+      for (const field in this.fields) {
+        this.fields[field].error = '';
+      }
+
+      // check passwords
+      /* if (this.fields.password.value !== this.fields.passwordConfirmation.value) {
+        return;
+      } */
+
+      // login api call
+      try {
+        const response = await api.post('/user', {
+          firstname: this.fields.firstname.value,
+          familyname: this.fields.familyname.value,
+          email: this.fields.email.value,
+          password: this.fields.password.value,
+        });
+
+        this.success.content = {
+          title: 'Request successful!',
+          message: `Thank you, ${this.fields.firstname.value}! Your Account was successfully requested.`,
+        } as CalloutContent;
+        this.success.state = true;
+
+        // eslint-disable-next-line no-restricted-syntax, guard-for-in
+        for (const field in this.fields) {
+          this.fields[field].value = '';
+        }
+      } catch (error) {
+        this.fullError = error;
+        this.error = {
+          title: (error.response) ? error.response?.data.message : error.message,
+          message: Validation.generateErrorMessage(error.response?.data.fieldErrors),
+        } as CalloutContent;
+
+        Validation.matchInputErros(this.fields, error.response?.data.fieldErrors);
+      }
+    },
+  },
 });
 </script>
 

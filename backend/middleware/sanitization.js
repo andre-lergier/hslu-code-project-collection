@@ -15,6 +15,22 @@ export default class Sanitization {
         .isLength({ min: 8 }).withMessage('Must be at least 8 chars long')
         .escape(),
     ],
+    signup: [
+      expv.body('firstname')
+        .trim()
+        .escape(),
+      expv.body('familyname')
+        .trim()
+        .escape(),
+      expv.body('email')
+        .isEmail()
+        .normalizeEmail().withMessage('Must be a valid Email address')
+        .trim()
+        .escape(),
+      expv.body('password')
+        .trim()
+        .isLength({ min: 8 }).withMessage('Must be at least 8 chars long'),
+    ],
   }
 
   static checkValidationResults = (request, response, next) => {

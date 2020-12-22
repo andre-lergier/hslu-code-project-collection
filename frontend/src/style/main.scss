@@ -7,7 +7,9 @@
   --grid-spacer: 15px;
   --color-yellow: #FFD25F;
   --color-red: rgb(255, 59, 48);
+  --color-green: rgb(52, 199, 89);
   --color-error: var(--color-red);
+  --color-success: var(--color-green);
   --color-blue: #1A628A;
   --color-dark-blue: #26495E;
   --color-gray: #707070;
@@ -80,6 +82,12 @@ a{
   grid-template-columns: repeat(12, 1fr);
   grid-gap: calc(var(--grid-spacer) * 2);
   justify-items: stretch;
+
+  form &{
+    @media (max-width: 767.98px){
+      gap: unset;
+    }
+  }
 }
 
 .g-md-6 {
@@ -88,4 +96,8 @@ a{
   @media (max-width: 767.98px){
     grid-column: auto / span 12;
   }
+}
+
+.mt{
+  margin-top: calc(var(--grid-spacer) * 1.25);
 }

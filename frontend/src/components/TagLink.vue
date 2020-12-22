@@ -2,7 +2,7 @@
   <div class="link">
     <span class="link__label">{{ label }}:</span>
     <div class="link__text-tag-wrapper">
-      <CustomLink :link="linkData.url">
+      <CustomLink :link="url" external>
         <template v-if="linkData.title">{{ linkData.title }}</template>
         <template v-else>{{ linkData.url }}</template>
       </CustomLink>
@@ -40,6 +40,15 @@ export default defineComponent({
       validator(projectData: Link) {
         return !!projectData.url;
       },
+    },
+  },
+  computed: {
+    url(): string {
+      if (!this.linkData.title) {
+        return `https://${this.linkData.url}`;
+      }
+
+      return this.linkData.url;
     },
   },
 });

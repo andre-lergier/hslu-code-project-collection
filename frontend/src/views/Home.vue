@@ -91,11 +91,9 @@ export default defineComponent({
     }) // same as axios.get('http://localhost:4433/projects');
       .then((response) => {
         this.projects = response.data.projects;
-        console.log(response);
       })
       .catch((error) => {
         console.log('catch view get');
-        console.log(error);
         this.errored = true;
         this.error = error;
       }).finally(() => {

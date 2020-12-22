@@ -1,15 +1,28 @@
 <template>
   <div class="form-group">
     <label :for="id">{{label}}</label>
-    <input
-      :type="type"
-      :id="id"
-      class="form-element"
-      :value="modelValue"
-      :placeholder="placeholder"
-      @input="$emit('update:modelValue', $event.target.value)"
-      :required="required"
-    >
+    <div class="input-wrapper">
+      <input
+        :type="inputType"
+        :id="id"
+        class="form-element"
+        :value="modelValue"
+        :placeholder="placeholder"
+        :autocomplete="autocomplete"
+        @input="$emit('update:modelValue', $event.target.value)"
+        :required="required"
+      >
+
+      <a href="#"
+        v-if="type === 'password'"
+        class="show-password-button"
+        @click="showPassword = !showPassword"
+      >
+        <font-awesome-icon v-if="!showPassword" :icon="['fal', 'eye']"/>
+        <font-awesome-icon v-else :icon="['fal', 'eye-slash']"/>
+      </a>
+    </div>
+
     <FormInputError :error="error" />
   </div>
 </template>
@@ -36,6 +49,11 @@ export default defineComponent({
       required: false,
       default: '',
     },
+    autocomplete: {
+      type: String,
+      required: false,
+      default: '',
+    },
     required: {
       type: Boolean,
       required: false,
@@ -56,7 +74,19 @@ export default defineComponent({
   data() {
     return {
       id: '',
+      showPassword: false,
     };
+  },
+  computed: {
+    inputType(): string {
+      if (this.type === 'password') {
+        if (this.showPassword) {
+          return 'text';
+        }
+        return 'password';
+      }
+      return this.type;
+    },
   },
   mounted() {
     this.id = `inputID-${this.uuidv4()}`;
@@ -80,6 +110,7 @@ label{
   font-variation-settings: 'wght' 500;
   margin-bottom: 3px;
 }
+
 input{
   display: block;
   width: 100%;
@@ -98,6 +129,27 @@ input{
   &:focus{
     border-color: #5a5a5a;
     outline: none;
+  }
+}
+
+.input-wrapper{
+  position:relative;
+}
+
+.show-password-button{
+  display:block;
+  font-size: 1.1rem;
+  line-height:1;
+  color: var(--color-text);
+  position: absolute;
+  z-index:1;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  opacity: .7;
+
+  &:hover, &:focus{
+    opacity: 1;
   }
 }
 </style>

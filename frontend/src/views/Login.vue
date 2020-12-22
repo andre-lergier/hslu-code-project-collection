@@ -6,7 +6,7 @@
       <form @submit.prevent="loginHandler">
         <FormInputText
           label="Email"
-          type="text"
+          type="email"
           v-model.trim="fields.email.value"
           placeholder="name@domain.ch"
           :error="fields.email.error"
@@ -19,15 +19,11 @@
           :error="fields.password.error"
         />
 
-        <Error :error="error" />
-
-        {{ error }}
+        <Callout :content="error" />
 
         <Button submit large type="primary">Login</Button>
         <Button to="/signup" large type="text">Request Account</Button>
       </form>
-
-      {{ fullError }}
     </section>
   </div>
 </template>
@@ -38,12 +34,13 @@ import { defineComponent } from 'vue';
 import FormInputText from '@/components/FormInputText.vue';
 import Button from '@/components/Button.vue';
 import Title from '@/components/Title.vue';
-import Error from '@/components/Error.vue';
+import Callout from '@/components/Callout.vue';
 import api from '@/modules/api';
 
+import Validation from '@/modules/validation';
 import {
-  HighlightedTitle, ValidationError, InputValidationError, DataObject,
-} from '../types/data-types';
+  HighlightedTitle, CalloutContent, FieldsObject, User,
+} from '@/types/data-types';
 
 export default defineComponent({
   name: 'Login',
@@ -51,7 +48,7 @@ export default defineComponent({
     FormInputText,
     Button,
     Title,
-    Error,
+    Callout,
   },
   props: {
   },
@@ -66,14 +63,14 @@ export default defineComponent({
           value: '',
           error: '',
         },
-      },
+      } as FieldsObject,
       title: {
         highlighted: 'Login',
         append: '',
       } as HighlightedTitle,
       error: {},
       fullError: {},
-    } as DataObject;
+    };
   },
   computed: {},
   methods: {
@@ -91,32 +88,20 @@ export default defineComponent({
           password: this.fields.password.value,
         });
 
-        this.$store.commit('setToken', response.data.token);
+        this.$store.commit('setUser', {
+          token: response.data.token,
+          user: response.data.user as User,
+        });
         this.$router.push('/');
       } catch (error) {
         this.fullError = error;
         this.error = {
-          title: error.message,
-          message: error.response.data.message,
-          fieldErrors: error.response.data.fieldErrors,
-        } as ValidationError;
+          title: (error.response) ? error.response?.data.message : error.message,
+          message: Validation.generateErrorMessage(error.response?.data.fieldErrors),
+        } as CalloutContent;
 
-        this.checkInputErros(error.response.data?.fieldErrors);
+        Validation.matchInputErros(this.fields, error.response?.data.fieldErrors);
       }
-    },
-    checkInputErros(errors: InputValidationError[]) {
-      if (errors) {
-        // eslint-disable-next-line no-restricted-syntax
-        for (const error of errors) {
-          if (error.param in this.fields) {
-            this.fields[error.param].error = error.msg;
-          }
-        }
-      }
-    },
-    typedKeys<T>(o: T): (keyof T)[] {
-      // type cast should be safe because that's what really Object.keys() does
-      return Object.keys(o) as (keyof T)[];
     },
   },
 });

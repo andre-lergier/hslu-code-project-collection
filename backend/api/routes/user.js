@@ -15,7 +15,7 @@ export default class UserRoutes {
   initializeRoutes() {
     this.router.get('/:email', checkAuthorization, this.controller.getSingle.bind(this.controller));
 
-    this.router.post('/', checkAuthorization, this.controller.create.bind(this.controller));
+    this.router.post('/', Sanitization.user.signup, Sanitization.checkValidationResults, checkAuthorization, this.controller.create.bind(this.controller));
     this.router.post('/login', Sanitization.user.login, Sanitization.checkValidationResults, this.controller.login.bind(this.controller));
 
     this.router.delete('/:id', checkAuthorization, this.controller.delete.bind(this.controller));

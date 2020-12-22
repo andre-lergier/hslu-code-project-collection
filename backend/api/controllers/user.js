@@ -40,12 +40,15 @@ export default class UserControllers {
 
   async create(request, response) {
     const user = request.body;
-    const { name, email, password } = user;
+    const { firstname, familyname, email, password } = user;
 
     const hashedPassword = await HashedPassword.hash(password);
 
     const doc = {
-      name,
+      name: {
+        firstname,
+        familyname,
+      },
       email,
       password: hashedPassword,
     };
@@ -67,10 +70,22 @@ export default class UserControllers {
       }
 
       const result = await this.database.insertUser(doc);
+
+      // possible generation of jwt
+      const { insertedId } = result;
+      /* const payload = {
+        userId: insertedId,
+        email,
+      };
+
+      if (request.isAuth) {
+        const jwt = new AuthToken(payload).token;
+      } */
+
       return response.status(201).json({
         success: true,
-        message: 'user added successfully',
-        userId: result.insertedId,
+        message: 'User added successfully',
+        userId: insertedId,
       });
     } catch (error) {
       return response.status(400).json({
@@ -97,11 +112,9 @@ export default class UserControllers {
         };
         const jwt = new AuthToken(payload).token;
 
-        console.log(AuthToken.verifyToken(jwt));
-
         return response.status(201).json({
           success: true,
-          message: 'login successfully',
+          message: 'Login successfully',
           token: jwt,
           user,
         });
