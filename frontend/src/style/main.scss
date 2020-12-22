@@ -6,6 +6,8 @@
   --font-serif: 'Playfair Display', var(--font-sans);
   --grid-spacer: 15px;
   --color-yellow: #FFD25F;
+  --color-red: rgb(255, 59, 48);
+  --color-error: var(--color-red);
   --color-blue: #1A628A;
   --color-dark-blue: #26495E;
   --color-gray: #707070;
@@ -62,6 +64,10 @@ a{
   &:hover, &:focus{
     color: var(--color-dark-blue);
   }
+}
+
+.text-error{
+  color: var(--color-error);
 }
 
 .inline-icon{

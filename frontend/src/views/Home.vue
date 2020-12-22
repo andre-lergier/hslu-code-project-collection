@@ -30,7 +30,7 @@
       </section>
     </section>
     <div v-else class="container">
-      <error-banner :error="errorDetails" />
+      <error-banner :error="error" />
     </div>
 
     <div class="container impressum">
@@ -68,27 +68,36 @@ export default defineComponent({
     return {
       title: {
         highlighted: 'Code',
-        append: 'Projects',
+        append: ' Projects',
       } as HighlightedTitle,
       subtitle: 'by André Lergier | lergier.ch',
       introduction: 'It’s hard to keep track of all code projects stored on different plattforms, published under several subdomains, or deployed on various hostings. This overview is the solution for this problem and meakes it easy to find all code projects with their associated repository and links. To see private projects it’s madatory to be logged in.',
       projects: [],
       loading: true,
       errored: false,
-      errorDetails: {},
+      error: {},
     };
   },
+  computed: {
+    token(): string {
+      return this.$store.state.token;
+    },
+  },
   mounted() {
-    api.get('/projects') // same as axios.get('http://localhost:4433/projects');
+    api.get('/projects', {
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      },
+    }) // same as axios.get('http://localhost:4433/projects');
       .then((response) => {
         this.projects = response.data.projects;
         console.log(response);
       })
       .catch((error) => {
         console.log('catch view get');
-        console.error(error);
+        console.log(error);
         this.errored = true;
-        this.errorDetails = error;
+        this.error = error;
       }).finally(() => {
         this.loading = false;
       });

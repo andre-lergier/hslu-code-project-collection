@@ -2,38 +2,40 @@
   <section class="error api-error">
     <h3>{{ error.name }}</h3>
     <p>There's an error with the API: {{ error.message }}</p>
-    <code>
-      {{ details }}
+    <code class="error-details">
+      {{ details.message }}
     </code>
   </section>
 </template>
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent } from 'vue';
 
-import { Error } from '../types/data-types';
+// import { Error } from '../types/data-types';
 
 export default defineComponent({
   name: 'ErrorBanner',
   props: {
-    callback: {
+    /* callback: {
       type: Function as PropType<() => void>,
-    },
+    }, */
     error: {
       required: true,
-      type: Object as PropType<Error>,
+      type: Object,
+      // as PropType<Error> -> fix Property 'response'
+      // does not exist on type 'object'.Vetur(2339)
     },
   },
   computed: {
-    details(): string {
+    details(): object {
       let details: object = {};
 
-      if (this.error.errorDetails) {
-        details = this.error.errorDetails;
+      if (this.error.response.data) {
+        details = this.error.response.data;
       } else if (this.error.config) {
         details = this.error.config;
       }
 
-      return JSON.stringify(details);
+      return details;
     },
   },
 });
@@ -45,5 +47,17 @@ export default defineComponent({
   padding: var(--grid-spacer);
   border-radius:10px;
   margin-top:50px;
+}
+
+.error-details{
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-family: var(--font-sans);
+  line-height:1;
+  font-size: .8rem;
+  background: rgb(240, 216, 216);
+  border-radius: 6px;
 }
 </style>

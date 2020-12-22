@@ -7,8 +7,12 @@ export default class Sanitization {
     login: [
       expv.body('email')
         .isEmail()
-        .normalizeEmail()
+        .normalizeEmail().withMessage('Must be a valid Email address')
         .trim()
+        .escape(),
+      expv.body('password')
+        .trim()
+        .isLength({ min: 8 }).withMessage('Must be at least 8 chars long')
         .escape(),
     ],
   }
@@ -19,7 +23,7 @@ export default class Sanitization {
       return response.status(400).json({
         success: false,
         message: 'Validation failed',
-        errors: errors.array(),
+        fieldErrors: errors.array(),
       });
     }
 

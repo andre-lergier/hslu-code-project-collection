@@ -3,24 +3,31 @@
     <section class="login-window">
       <Title :title="title" small />
 
-      <form autocomplete="off">
+      <form @submit.prevent="loginHandler">
         <FormInputText
           label="Email"
-          type="email"
-          v-model.trim="email"
+          type="text"
+          v-model.trim="fields.email.value"
           placeholder="name@domain.ch"
+          :error="fields.email.error"
         />
         <FormInputText
           label="Password"
           type="password"
-          v-model.trim="password"
+          v-model.trim="fields.password.value"
           placeholder="••••••••"
+          :error="fields.password.error"
         />
+
+        <Error :error="error" />
+
+        {{ error }}
+
         <Button submit large type="primary">Login</Button>
         <Button to="/signup" large type="text">Request Account</Button>
       </form>
-      {{ email }}
-      {{ password }}
+
+      {{ fullError }}
     </section>
   </div>
 </template>
@@ -31,8 +38,12 @@ import { defineComponent } from 'vue';
 import FormInputText from '@/components/FormInputText.vue';
 import Button from '@/components/Button.vue';
 import Title from '@/components/Title.vue';
+import Error from '@/components/Error.vue';
+import api from '@/modules/api';
 
-import { HighlightedTitle } from '../types/data-types';
+import {
+  HighlightedTitle, ValidationError, InputValidationError, DataObject,
+} from '../types/data-types';
 
 export default defineComponent({
   name: 'Login',
@@ -40,20 +51,74 @@ export default defineComponent({
     FormInputText,
     Button,
     Title,
+    Error,
   },
   props: {
   },
   data() {
     return {
-      email: '',
-      password: '',
+      fields: {
+        email: {
+          value: '',
+          error: '',
+        },
+        password: {
+          value: '',
+          error: '',
+        },
+      },
       title: {
         highlighted: 'Login',
         append: '',
       } as HighlightedTitle,
-    };
+      error: {},
+      fullError: {},
+    } as DataObject;
   },
   computed: {},
+  methods: {
+    async loginHandler() {
+      // clean up errors
+      // eslint-disable-next-line no-restricted-syntax, guard-for-in
+      for (const field in this.fields) {
+        this.fields[field].error = '';
+      }
+
+      // login api call
+      try {
+        const response = await api.post('/user/login', {
+          email: this.fields.email.value,
+          password: this.fields.password.value,
+        });
+
+        this.$store.commit('setToken', response.data.token);
+        this.$router.push('/');
+      } catch (error) {
+        this.fullError = error;
+        this.error = {
+          title: error.message,
+          message: error.response.data.message,
+          fieldErrors: error.response.data.fieldErrors,
+        } as ValidationError;
+
+        this.checkInputErros(error.response.data?.fieldErrors);
+      }
+    },
+    checkInputErros(errors: InputValidationError[]) {
+      if (errors) {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const error of errors) {
+          if (error.param in this.fields) {
+            this.fields[error.param].error = error.msg;
+          }
+        }
+      }
+    },
+    typedKeys<T>(o: T): (keyof T)[] {
+      // type cast should be safe because that's what really Object.keys() does
+      return Object.keys(o) as (keyof T)[];
+    },
+  },
 });
 </script>
 

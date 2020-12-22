@@ -8,17 +8,22 @@
       :value="modelValue"
       :placeholder="placeholder"
       @input="$emit('update:modelValue', $event.target.value)"
+      :required="required"
     >
-    <!-- <FormError v-if="error" :error="error"/> -->
+    <FormInputError :error="error" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+import FormInputError from '@/components/FormInputError.vue';
+
 export default defineComponent({
   name: 'FormInputText',
-  components: {},
+  components: {
+    FormInputError,
+  },
   props: {
     label: String,
     type: {
@@ -30,6 +35,11 @@ export default defineComponent({
       type: String,
       required: false,
       default: '',
+    },
+    required: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
     modelValue: {
       type: String,

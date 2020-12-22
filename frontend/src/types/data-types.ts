@@ -14,7 +14,21 @@ export interface Error {
   name: string;
   message: string;
   errorDetails?: object;
+  response?: object;
   config?: object;
+}
+
+export interface ValidationError {
+  title: string;
+  message: string;
+  fieldErrors?: InputValidationError[];
+}
+
+export interface InputValidationError {
+  msg: string;
+  param: string;
+  value: string;
+  location: string;
 }
 
 export interface ProjectData {
@@ -33,4 +47,8 @@ export interface ProjectData {
   };
 
   database?: Link;
+}
+
+export interface DataObject {
+  [key: string]: unknown;
 }
