@@ -34,6 +34,7 @@ app.use((req, res, next) => {
   try {
     await database.connectMongoDB();
 
+    // database.initDatabase();
     // database.initDefaultContent();
 
     const router = new APIRouter(database);

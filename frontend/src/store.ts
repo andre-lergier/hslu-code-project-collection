@@ -11,8 +11,15 @@ export default createStore({
   },
   mutations: {
     setUser(state: State, response): void {
+      localStorage.setItem('token', response.token);
       state.token = response.token;
       state.user = response.user;
+    },
+
+    logout(state: State): void {
+      localStorage.removeItem('token');
+      state.token = '';
+      state.user = {};
     },
   },
 });

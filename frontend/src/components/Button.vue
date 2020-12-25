@@ -66,6 +66,11 @@ export default defineComponent({
   transition: all .3s ease;
   cursor: pointer;
 
+  @media (max-width: 767.98px){
+    font-size: .85rem;
+    padding: 10px 14px;
+  }
+
   &:not(:last-child){
     margin-right: calc(var(--grid-spacer) / 2);
   }
@@ -73,6 +78,11 @@ export default defineComponent({
   &.button-large{
     font-size: 1rem;
     padding: 11px 23px;
+
+    @media (max-width: 767.98px){
+      font-size: .9rem;
+      padding: 11px 20px;
+    }
   }
 
   &.button-primary{

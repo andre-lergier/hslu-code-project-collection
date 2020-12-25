@@ -1,9 +1,13 @@
 // eslint-disable-next-line import/prefer-default-export
 export const projectValidator = {
   bsonType: 'object',
-  required: ['title'],
+  required: ['title', 'category'],
   properties: {
     title: {
+      bsonType: 'string',
+      description: 'must be a string and is required',
+    },
+    category: {
       bsonType: 'string',
       description: 'must be a string and is required',
     },

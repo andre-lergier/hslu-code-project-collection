@@ -60,7 +60,7 @@ export default defineComponent({
       default: false,
     },
     modelValue: {
-      type: String,
+      type: undefined,
     },
     error: {
       type: String,

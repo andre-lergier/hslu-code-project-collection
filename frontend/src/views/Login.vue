@@ -1,6 +1,6 @@
 <template>
   <div class="login-wrapper">
-    <section class="login-window">
+    <section class="login-window form-window">
       <Title :title="title" small />
 
       <form @submit.prevent="loginHandler">
@@ -35,8 +35,8 @@ import FormInputText from '@/components/FormInputText.vue';
 import Button from '@/components/Button.vue';
 import Title from '@/components/Title.vue';
 import Callout from '@/components/Callout.vue';
-import api from '@/modules/api';
 
+import api from '@/modules/api';
 import Validation from '@/modules/validation';
 import {
   HighlightedTitle, CalloutContent, FieldsObject, User,
@@ -104,6 +104,29 @@ export default defineComponent({
       }
     },
   },
+  async beforeCreate() {
+    if (this.$store.state.token) {
+      console.log('Automatic login!');
+
+      const { token } = this.$store.state;
+      try {
+        const response = await api.get('/user', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        this.$store.commit('setUser', {
+          token: response.data.token,
+          user: response.data.user as User,
+        });
+        this.$router.push('/');
+      } catch (error) {
+        console.log('Automatic login failed!');
+        console.error(error);
+      }
+    }
+  },
 });
 </script>
 
@@ -115,16 +138,14 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
 
+  @media (max-width: 767.98px){
+    align-items: flex-start;
+    padding-top: 35px;
+  }
+
   .login-window{
-    background:white;
-    flex-shrink: 0;
-    flex-grow: 0;
-    display:block;
     max-width: 750px;
     width:calc(100% - var(--grid-spacer) * 2);
-    padding:25px 30px;
-    border-radius: 12px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.01);
   }
 }
 </style>

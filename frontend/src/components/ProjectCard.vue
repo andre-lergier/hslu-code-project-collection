@@ -1,16 +1,24 @@
 <template>
-  <article class="project-card">
+  <article class="project-card" :id="projectData._id">
     <div class="project-card__header">
       <div class="project-card__title">
         <h3>{{ projectData.title }}</h3>
-        <span v-if="projectData.private" class="private-indicator">
-          <font-awesome-icon class="inline-icon" :icon="['fal', 'lock']" /> Private
-        </span>
+        <div class="visibility-indicator">
+          <span v-if="projectData.private">
+            <font-awesome-icon class="inline-icon" :icon="['fal', 'lock']" /> Private
+          </span>
+          <span v-else>
+            <font-awesome-icon class="inline-icon" :icon="['fal', 'unlock']" /> Public
+          </span>
+        </div>
       </div>
       <span class="year" v-if="projectData.year">{{ projectData.year }}</span>
     </div>
 
-    <div class="project-card__repository" v-if="projectData.repository">
+    <div
+      class="project-card__repository"
+      v-if="(projectData.repository && isAuth) || (projectData.repository && !projectData.private)"
+    >
       <font-awesome-icon class="inline-icon" :icon="['fab', platformIcon]" />
        <CustomLink :link="projectData.repository.url" title="Repository anzeigen" external>
         {{ projectData.repository.name }}
@@ -29,6 +37,7 @@
 import { defineComponent, PropType } from 'vue';
 import CustomLink from '@/components/CustomLink.vue';
 import TagLink from '@/components/TagLink.vue';
+import Auth from '@/modules/auth';
 
 import { ProjectData } from '../types/data-types';
 
@@ -51,6 +60,9 @@ export default defineComponent({
     },
   },
   computed: {
+    isAuth(): boolean {
+      return Auth.isAuthenticated();
+    },
     platformIcon(): string {
       return this.projectData?.repository.platform.toLowerCase();
     },
@@ -77,7 +89,7 @@ export default defineComponent({
       font-size:1.125rem;
     }
 
-    .private-indicator{
+    .visibility-indicator{
       font-size:.9rem;
       color: var(--color-text-light);
     }

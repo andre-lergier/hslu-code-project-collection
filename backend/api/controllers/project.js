@@ -50,15 +50,22 @@ export default class ProjectControllers {
     /* if (!request.body.title) {
       return response.status(400).json({ success: false, message: 'name is required' });
     } */
+    if (!request.isAuth) {
+      return response.status(401).json({
+        success: false,
+        message: 'Not authorized toperform this action',
+      });
+    }
 
-    const project = request.body; // data.wb
+    const project = request.body;
 
     try {
       const result = await this.database.insertProject(project);
       return response.status(201).json({
         success: true,
         message: 'project added successfully',
-        project: result.insertedId,
+        project,
+        projectId: result.insertedId,
       });
     } catch (error) {
       return response.status(400).json({

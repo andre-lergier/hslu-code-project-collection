@@ -40,11 +40,19 @@ h1{
   font-size: 3.5rem;
   margin-bottom:55px;
 
+  @media (max-width: 767.98px){
+    font-size: 2.65rem;
+  }
+
   &.small{
     font-size: 2.25rem;
     font-variation-settings: "wght" 600;
     margin-bottom:15px;
     margin-top:10px;
+
+    @media (max-width: 767.98px){
+      font-size: 2rem;
+    }
   }
 
   small{

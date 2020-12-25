@@ -23,6 +23,7 @@ export interface HighlightedTitle {
 
 export interface ProjectData {
   title: string;
+  category: string;
   year?: number;
   private: boolean;
 
@@ -82,4 +83,9 @@ export interface FieldsObject {
 export interface InputField {
   value: string;
   error: string;
+}
+
+export interface ProjectCategory {
+  category: string;
+  projects: ProjectData[];
 }

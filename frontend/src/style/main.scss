@@ -35,10 +35,14 @@ body{
   color: var(--color-text);
   -webkit-tap-highlight-color: transparent;
 
+  @media (max-width: 767.98px){
+    font-size: .95rem;
+  }
 }
 
 .container{
-  max-width: 1200px;
+  width: 1200px;
+  max-width: 100%;
   padding: 0 var(--grid-spacer);
   margin-left: auto;
   margin-right: auto;
@@ -90,6 +94,10 @@ a{
   }
 }
 
+.g-12 {
+  grid-column: auto / span 12;
+}
+
 .g-md-6 {
   grid-column: auto / span 6;
 
@@ -100,4 +108,19 @@ a{
 
 .mt{
   margin-top: calc(var(--grid-spacer) * 1.25);
+}
+
+
+.form-window{
+  background:white;
+  flex-shrink: 0;
+  flex-grow: 0;
+  display:block;
+  padding:25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.01);
+
+  @media (max-width: 767.98px){
+    padding:15px 20px;
+  }
 }

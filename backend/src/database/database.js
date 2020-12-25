@@ -51,27 +51,6 @@ export default class Database {
     }
   }
 
-  createProjectCollection() {
-    return this.db.createCollection('projects', {
-      validator: {
-        $jsonSchema: projectValidator,
-      },
-    });
-  }
-
-  createUserCollection() {
-    return this.db.createCollection('users', {
-      validator: {
-        $jsonSchema: userValidator,
-      },
-    });
-  }
-
-  initDatabase() {
-    this.createProjectCollection();
-    this.createUserCollection();
-  }
-
   /**
    * Projects
    */
@@ -81,13 +60,17 @@ export default class Database {
   }
 
   getProjects(query = {}, authorized = false) {
-    let options = {};
+    const options = {};
+
+    options.sort = {
+      category: -1,
+      year: -1,
+      title: 1,
+    };
 
     if (!authorized) {
-      options = {
-        projection: {
-          title: 1, year: 1, 'publicLink.url': 1,
-        },
+      options.projection = {
+        title: 1, year: 1, category: 1, private: 1, repository: 1, 'publicLink.url': 1,
       };
     }
 
@@ -162,6 +145,27 @@ export default class Database {
    *
    * ------------------------------
    */
+  createProjectCollection() {
+    return this.db.createCollection('projects', {
+      validator: {
+        $jsonSchema: projectValidator,
+      },
+    });
+  }
+
+  createUserCollection() {
+    return this.db.createCollection('users', {
+      validator: {
+        $jsonSchema: userValidator,
+      },
+    });
+  }
+
+  initDatabase() {
+    this.createProjectCollection();
+    this.createUserCollection();
+  }
+
   initDefaultContent() {
     this.dropProjects();
     this.dropUsers();

@@ -9,13 +9,14 @@ Hochschule Luzern, Digital Ideation
 ## Technical Challenges :rocket:
 With this project I want to try out technologies, I never used before or I'm not yet very used to.
 
-- [Vue.js v**3**](https://v3.vuejs.org/)
+- [Vue.js **3**](https://v3.vuejs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [MongoDB](https://www.mongodb.com/)
 - [Rest](https://restfulapi.net/)
-- [Node.js v**14**](https://nodejs.org/)
+- [Node.js **14**](https://nodejs.org/)
 - [Express](https://expressjs.com/)
 - [Axios]()
+- [JWT]()
 - [CSS Grid]()
 
 ---
@@ -45,9 +46,11 @@ npm run lint
 ```
 
 ---
-__Page:__ [code.lergier.ch](https://code.lergier.ch)
-__API:__ [api.code.lergier.ch](http://api.code.lergier.ch)
+
+__Page:__ [code.lergier.ch](https://code.lergier.ch)  
+__API HTTP:__ [api.code.lergier.ch](http://api.code.lergier.ch)  
 __API HTTPS:__ [hslu-code-project-collection.herokuapp.com](https://hslu-code-project-collection.herokuapp.com/)
+
 ---
 
 # Documentation
@@ -55,6 +58,9 @@ __API HTTPS:__ [hslu-code-project-collection.herokuapp.com](https://hslu-code-pr
 ## Architecture  
 
 ## Technologies 
+
+## Vue 3
+[Vue+TypeScript Cheatsheets](https://github.com/typescript-cheatsheets/vue)
 
 ### MongoDB
 In all my previous projects with a database I used a relational SQL-DB. So this is the very first time for me to try out a no SQL, file based database. Simply explained, in a noSQL Database the data isn't stored in columns and rows but in files.  
@@ -111,6 +117,10 @@ A JSON Web Token consists of 3 parts sperated by dots: `Header`, `Payload` and `
 - [Introduction JWT](https://jwt.io/introduction/)
 - [Documentation JWT](https://github.com/auth0/node-jsonwebtoken)
 - [Documentation bcrypt](https://github.com/kelektiv/node.bcrypt.js)
+
+#### Sanitization
+- [```express-validator```](https://express-validator.github.io/docs/index.html)
+- [```validator.js```](https://github.com/validatorjs/validator.js#validators)
 
 ### Tutorials
 __If using Typescript:__  

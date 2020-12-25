@@ -1,6 +1,7 @@
 export default [
   {
     title: 'Fuchs + Partner Treuhand AG',
+    category: 'Lergier Design',
     year: 2020,
     private: true,
     publicLink: {
@@ -19,6 +20,7 @@ export default [
   },
   {
     title: 'wegmüller | briggen architektur ag',
+    category: 'Lergier Design',
     year: 2020,
     private: true,
     publicLink: {
@@ -27,7 +29,7 @@ export default [
     },
     devLink: {
       url: 'wb-architektur.dev.lergier.ch',
-      tags: ['Netlify', 'Bitbucket'],
+      tags: ['Hostpoint', 'Bitbucket'],
     },
     repository: {
       platform: 'Bitbucket',
@@ -37,6 +39,7 @@ export default [
   },
   {
     title: 'AMM Künzli Thun',
+    category: 'Lergier Design',
     year: 2018,
     private: true,
     publicLink: {
@@ -55,6 +58,7 @@ export default [
   },
   {
     title: 'Physio van den Nobelen GmbH',
+    category: 'Lergier Design',
     year: 2015,
     private: true,
     publicLink: {
@@ -74,6 +78,48 @@ export default [
       title: 'PhpMyAdmin',
       url: 'https://secure3.4synergy.com/phpMyAdmin/',
       tags: ['MySQL'],
+    },
+  },
+  {
+    title: 'Project Collection',
+    category: 'Hochschule Luzern, Digital Ideation',
+    year: 2020,
+    private: false,
+    publicLink: {
+      url: 'code.lergier.ch',
+      tags: ['Netlify', 'Heroku'],
+    },
+    repository: {
+      platform: 'GitHub',
+      name: 'andre-lergier/hslu-web-project-collection',
+      url: 'https://github.com/andre-lergier/hslu-web-project-collection',
+    },
+    database: {
+      title: 'API',
+      url: 'http://api.code.lergier.ch',
+      tags: ['MongoDB', 'Rest'],
+    },
+  },
+  {
+    title: 'Planty 🌱',
+    category: 'Hochschule Luzern, Digital Ideation',
+    year: 2020,
+    private: true,
+    repository: {
+      platform: 'GitHub',
+      name: 'andre-lergier/hslu-ios-planty',
+      url: 'https://github.com/andre-lergier/hslu-ios-planty',
+    },
+  },
+  {
+    title: 'Computational Perception',
+    category: 'Hochschule Luzern, Digital Ideation',
+    year: 2019,
+    private: true,
+    repository: {
+      platform: 'GitHub',
+      name: 'andre-lergier/hslu-comppx',
+      url: 'https://github.com/andre-lergier/hslu-comppx',
     },
   },
 ];

@@ -2,9 +2,9 @@
   <section class="error api-error">
     <h3>{{ error.name }}</h3>
     <p>There's an error with the API: {{ error.message }}</p>
-    <code class="error-details">
-      {{ details.message }}
-    </code>
+    <!-- <code class="error-details">
+      {{ details }}
+    </code> -->
   </section>
 </template>
 <script lang="ts">
@@ -26,16 +26,23 @@ export default defineComponent({
     },
   },
   computed: {
-    details(): object {
-      let details: object = {};
+    details(): string {
+      /* let details: object = {};
 
-      if (this.error.response.data) {
-        details = this.error.response.data;
-      } else if (this.error.config) {
-        details = this.error.config;
+      if (this.error?.response.data) {
+        console.log('1');
+        details = this.error?.response?.data;
+      } else if (this.error?.config) {
+        console.log('2');
+        details = this.error?.config;
+      } else {
+        console.log('3');
+        details = this.error;
       }
+      console.log('4');
+      // return this.error; */
 
-      return details;
+      return JSON.stringify(this.error);
     },
   },
 });

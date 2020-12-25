@@ -12,7 +12,7 @@ export default class UserControllers {
     // email from url
     const { email } = request.params;
 
-    // make sure to only return user data to logged in user
+    // make sure to only return user data to logged in user (userEmail is from token)
     if (email !== request?.userEmail) {
       return response.status(401).json({
         success: false,
@@ -22,7 +22,7 @@ export default class UserControllers {
 
     try {
       const result = await this.database.getUser(email);
-      return response.status(201).send({
+      return response.status(200).send({
         success: true,
         message: 'user',
         user: result,
@@ -33,6 +33,44 @@ export default class UserControllers {
 
       return response.status(400).send({
         success: false,
+        error,
+      });
+    }
+  }
+
+  async getSingleWithToken(request, response) {
+    if (!request.isAuth) {
+      return response.status(401).json({
+        success: false,
+        message: 'Authentication failed',
+      });
+    }
+
+    try {
+      const result = await this.database.getUser(request.userEmail);
+
+      if (!result) {
+        console.log('User doesn\'t exist');
+
+        return response.status(401).json({
+          success: false,
+          message: 'Authentication failed',
+        });
+      }
+
+      return response.status(200).send({
+        success: true,
+        message: 'User',
+        token: request.userToken,
+        user: result,
+      });
+    } catch (error) {
+      console.log('Error getSingleWithToken getSingle');
+      console.error(error);
+
+      return response.status(400).send({
+        success: false,
+        message: 'Authentication failed',
         error,
       });
     }
@@ -112,7 +150,7 @@ export default class UserControllers {
         };
         const jwt = new AuthToken(payload).token;
 
-        return response.status(201).json({
+        return response.status(200).json({
           success: true,
           message: 'Login successfully',
           token: jwt,

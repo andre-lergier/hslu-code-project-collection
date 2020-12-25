@@ -1,6 +1,6 @@
 <template>
   <div class="login-wrapper">
-    <section class="login-window">
+    <section class="login-window form-window">
       <Title :title="title" small />
 
       <template  v-if="!success.state">
@@ -125,14 +125,9 @@ export default defineComponent({
     };
   },
   computed: {
-    /* passwordConfirmationError(): string {
-      if (this.fields.password.value !== '' && this.fields.passwordConfirmation.value !== '') {
-        if (this.fields.password.value !== this.fields.passwordConfirmation.value) {
-          return 'Password doesn\'t match.';
-        }
-      }
-      return '';
-    }, */
+    token(): string {
+      return this.$store.state.token;
+    },
   },
   methods: {
     async signupHandler() {
@@ -142,19 +137,21 @@ export default defineComponent({
         this.fields[field].error = '';
       }
 
-      // check passwords
-      /* if (this.fields.password.value !== this.fields.passwordConfirmation.value) {
-        return;
-      } */
-
-      // login api call
+      // api call
       try {
         const response = await api.post('/user', {
           firstname: this.fields.firstname.value,
           familyname: this.fields.familyname.value,
           email: this.fields.email.value,
           password: this.fields.password.value,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          },
         });
+
+        console.log(`User ${response.data.userId} successfully created.`);
 
         this.success.content = {
           title: 'Request successful!',
@@ -188,16 +185,14 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
 
+  @media (max-width: 767.98px){
+    align-items: flex-start;
+    padding-top: 35px;
+  }
+
   .login-window{
-    background:white;
-    flex-shrink: 0;
-    flex-grow: 0;
-    display:block;
     max-width: 750px;
     width:calc(100% - var(--grid-spacer) * 2);
-    padding:25px 30px;
-    border-radius: 12px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.01);
   }
 }
 </style>

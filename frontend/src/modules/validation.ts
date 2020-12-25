@@ -43,4 +43,9 @@ export default class Validation {
   static capitalizeFirstLetter(inputString: string): string {
     return inputString.charAt(0).toUpperCase() + inputString.slice(1);
   }
+
+  static cleanObject(fields: FieldsObject): void {
+    // eslint-disable-next-line no-param-reassign
+    Object.keys(fields).forEach((key: string) => (fields[key] == null) && delete fields[key]);
+  }
 }
