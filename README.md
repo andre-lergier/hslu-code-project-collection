@@ -51,6 +51,9 @@ __Page:__ [code.lergier.ch](https://code.lergier.ch)
 __API HTTP:__ [api.code.lergier.ch](http://api.code.lergier.ch)  
 __API HTTPS:__ [hslu-code-project-collection.herokuapp.com](https://hslu-code-project-collection.herokuapp.com/)
 
+> Code to deploy to Heroku:  
+```git subtree push --prefix backend heroku master```
+
 ---
 
 # Documentation
