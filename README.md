@@ -179,7 +179,8 @@ __More Links:__
 ## API
 To access and manage the database I wanted to write an API. This brings the benefits of an independent backend, so you can access the data from every client.
 
-### REST
+### RESTful
+
 #### Status Codes
 | Code | Status                |
 |------|-----------------------|
