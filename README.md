@@ -82,8 +82,12 @@ I didn't experience big differences or improvements. For me the biggest change w
 To setup the project I used the newest version of __[Vue CLI](https://cli.vuejs.org/guide/)__ with the following options:
 ![Vue CLI Settingns](readme-assets/vue-cli-settings.png)
 
-Helful Links:
+Helpful Links:
+- [Vue 3 Documentationn](https://v3.vuejs.org/)
 - [Vue+TypeScript Cheatsheets](https://github.com/typescript-cheatsheets/vue)
+- [Vuex 4 Documentation](https://next.vuex.vuejs.org/)
+- [Vue Router 4 Documentation](https://next.router.vuejs.org/)
+
 
 ### MongoDB
 In all my previous projects with a database I used a relational SQL-DB. So this is the very first time for me to try out a no SQL, file based database. Simply explained, in a noSQL Database the data isn’t stored in columns and rows but in files.
@@ -117,14 +121,18 @@ Every document in MongoDB has a unique `_id` field: `"_id": "..."`
 | `db.[collectionName].drop()` | Delete collection When all collections are dropped from a database, the database no longer appears in the list of databases when you run show dbs. |
 
 
-
 #### Tutorials
-Those links helped me out to understand MongoDB:
+To get startet with MongoDB I used [MongoDB University](https://university.mongodb.com/). I made parts of the following tutorials:
 - [M001: MongoDB Basics](https://university.mongodb.com/courses/M001/about)
 - [M100: MongoDB for SQL Pros](https://university.mongodb.com/courses/M100/about)
-- [M103]
+- [M103: Basic Cluster Administration](https://university.mongodb.com/courses/M103/about)
 
-- https://docs.mongodb.com/guides/server/introduction/
+__More Links:__
+- [Structure Data for MongoDB](https://docs.mongodb.com/guides/server/introduction/)
+- [Node Driver](https://docs.mongodb.com/drivers/node/)
+  - [Node CRUD Operations](https://docs.mongodb.com/drivers/node/fundamentals/crud)
+  - [Node Driver API](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html)
+- [Data Modeling](https://docs.mongodb.com/manual/core/data-modeling-introduction/)
 
 ### Typescript
 #### Tutorials:
