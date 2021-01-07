@@ -68,10 +68,33 @@ __API HTTPS:__ [hslu-code-project-collection.herokuapp.com](https://hslu-code-pr
 
 # Documentation 📔
 
-## Architecture  📐
+<!-- ## Architecture  📐
 
 > Code to deploy to Heroku:  
 ```git subtree push --prefix backend heroku master```
+-->
+
+## Views
+### Project overview
+The main view of the website is the project overview. Projects are grouped in categories and ordered by the date and their name.   
+If the user isn't logged in, the page shows less information.
+![Main view not logged in](readme-assets/views/home.png)
+
+### Projects
+If the user is logged in, the application shows more information.
+![Projects view](readme-assets/views/projects-logged-in.png)
+
+### Login
+If a user has an account he can login using his email and password.
+![Login view](readme-assets/views/login.png)
+
+### Create/Request an Account
+![Create Account view](readme-assets/views/create.png)
+
+### Create Project
+Logged in users can create new projects.
+![New Project](readme-assets/views/new-project.png)
+
 
 ## Technologies 💡
 
@@ -280,6 +303,6 @@ __Tutorial Series from Robin Wieruch:__
 - [How to handle errors in Express](https://www.robinwieruch.de/node-express-error-handling)
 
 
-## Prototype
+## Prototype 📐
 For concept and design purposes I created a simple prototype using [Figma](https://www.figma.com/).  
 Launch the prototype with this link: https://www.figma.com/file/5cJqJfXD5euCykWQKnMR2E/Home?node-id=0%3A1
