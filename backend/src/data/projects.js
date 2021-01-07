@@ -19,6 +19,21 @@ export default [
     },
   },
   {
+    title: 'Get Entry',
+    category: 'Lergier Design',
+    year: 2020,
+    private: true,
+    publicLink: {
+      url: 'get-entry.dev.lergier.ch',
+      tags: ['Netlify'],
+    },
+    repository: {
+      platform: 'GitHub',
+      name: 'andre-lergier/get-entry-frontend',
+      url: 'https://github.com/andre-lergier/get-entry-frontend',
+    },
+  },
+  {
     title: 'wegmüller | briggen architektur ag',
     category: 'Lergier Design',
     year: 2020,
@@ -54,6 +69,11 @@ export default [
       platform: 'Bitbucket',
       name: 'andrelergier/amm_kuenzli',
       url: 'https://bitbucket.org/andrelergier/amm_kuenzli',
+    },
+    database: {
+      title: 'PhpMyAdminn',
+      url: 'https://tux26s.trendhosting-net.ch/phpMyAdmin__alls/',
+      tags: ['MySQL'],
     },
   },
   {
@@ -101,7 +121,7 @@ export default [
     },
   },
   {
-    title: 'Planty 🌱',
+    title: 'iOS App Planty 🌱',
     category: 'Hochschule Luzern, Digital Ideation',
     year: 2020,
     private: true,
@@ -109,6 +129,77 @@ export default [
       platform: 'GitHub',
       name: 'andre-lergier/hslu-ios-planty',
       url: 'https://github.com/andre-lergier/hslu-ios-planty',
+    },
+  },
+  {
+    title: 'iOS Modul',
+    category: 'Hochschule Luzern, Digital Ideation',
+    year: 2020,
+    private: true,
+    repository: {
+      platform: 'GitHub',
+      name: 'andre-lergier/hslu-ios',
+      url: 'https://github.com/andre-lergier/hslu-ios',
+    },
+  },
+  {
+    title: 'IDA Pflanzen',
+    category: 'Hochschule Luzern, Digital Ideation',
+    year: 2020,
+    private: false,
+    publicLink: {
+      url: 'pflanzen.hslu.lergier.ch',
+      tags: ['Hostpoint'],
+    },
+    repository: {
+      platform: 'GitHub',
+      name: 'andre-lergier/hslu-ida-pflanzen',
+      url: 'https://github.com/andre-lergier/hslu-ida-pflanzen',
+    },
+  },
+  {
+    title: 'Infographic about UN Sustainable Goal 6',
+    category: 'Hochschule Luzern, Digital Ideation',
+    year: 2020,
+    private: false,
+    publicLink: {
+      url: 'un-sustainable-goal-infographic.hslu.lergier.ch',
+      tags: ['Netlify'],
+    },
+    repository: {
+      platform: 'GitHub',
+      name: 'andre-lergier/hslu-information-aesthetics',
+      url: 'https://github.com/andre-lergier/hslu-information-aesthetics',
+    },
+  },
+  {
+    title: 'Multi-Screen Ball Animation',
+    category: 'Hochschule Luzern, Digital Ideation',
+    year: 2020,
+    private: false,
+    publicLink: {
+      url: 'studio-web-2.hslu.lergier.ch',
+      tags: ['Netlify', 'Heroku'],
+    },
+    repository: {
+      platform: 'GitHub',
+      name: 'andre-lergier/hslu-studio-web-2',
+      url: 'https://github.com/andre-lergier/hslu-studio-web-2',
+    },
+  },
+  {
+    title: 'Frag Urs',
+    category: 'Hochschule Luzern, Digital Ideation',
+    year: 2019,
+    private: false,
+    publicLink: {
+      url: 'frag-urs.hslu.lergier.ch',
+      tags: ['Netlify'],
+    },
+    repository: {
+      platform: 'GitHub',
+      name: 'andre-lergier/hslu-studio-web-1',
+      url: 'https://github.com/andre-lergier/hslu-studio-web-1',
     },
   },
   {
