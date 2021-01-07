@@ -1,9 +1,7 @@
-# Code Project Collection with Vue.js, MongoDB, REST API and more
-
 >Personal mentoring project with [Maria Husmann](https://github.com/mhusm)  
 Hochschule Luzern, Digital Ideation, HS2020
 
-
+# Code Project Collection with Vue.js, MongoDB, REST API and more
 This website helps me to keep an overview of git repositories on different platforms, dev-, stage- and production-deployments and their particular hosting.  
 The data is stored in a `MongoDB` and is accessed with a `REST API`. The frontend is based on `Vue.js`.
 
@@ -27,27 +25,27 @@ These are the key technologies I wanted to learn:
 # Run Project
 
 ## Setup
-```
+```zsh
 npm run setup
 ```
 
 ## Development Frontend
 Compiles and hosts server for development
-```
+```zsh
 npm run frontend
 ```
 or
-```
+```zsh
 cd frontend
 npm run serve
 ```
 
 ## Build Frontend
-```
+```zsh
 npm run frontend-build
 ```
 or
-```
+```zsh
 cd frontend
 npm run build
 ```
