@@ -1,9 +1,11 @@
->Personal mentoring project with [Maria Husmann](https://github.com/mhusm)  
-Hochschule Luzern, Digital Ideation, HS2020
-
 # Code Project Collection with Vue.js, MongoDB, REST API and more
 This website helps me to keep an overview of git repositories on different platforms, dev-, stage- and production-deployments and their particular hosting.  
-The data is stored in a `MongoDB` and is accessed with a `REST API`. The frontend is based on `Vue.js`.
+The data is stored in a `MongoDB` and is accessed with a `REST API`. The frontend is based on `Vue.js`.  
+
+
+>Personal mentoring project with [Maria Husmann](https://github.com/mhusm)  
+Hochschule Luzern, Digital Ideation, HS2020  
+
 
 
 ## Technical Challenges :rocket:
