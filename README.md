@@ -181,7 +181,7 @@ To access and manage the database I wanted to write an API. This brings the bene
 
 ### RESTful
 
-#### Status Codes
+#### HTTP Status Codes
 | Code | Status                |
 |------|-----------------------|
 | 200  | OK                    |
@@ -257,7 +257,9 @@ To sanitize the user requests I use `express-validator` as a middleware on the s
 - [```express-validator```](https://express-validator.github.io/docs/index.html)
   - [```validator.js```](https://github.com/validatorjs/validator.js#validators):bulb:
 
-### Tutorials
+
+### Tutorials 
+
 __If using Typescript:__  
 - [1 Setup REST API](https://levelup.gitconnected.com/setup-restful-api-with-node-js-express-mongodb-using-typescript-261959ef0998)
 - [2 Project structure and Building Routes in REST API](https://levelup.gitconnected.com/project-structure-and-building-routes-of-restful-api-with-node-js-f3a8b53d94e7)  
