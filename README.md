@@ -151,7 +151,7 @@ Because I already wrote code in typed languages like Java or Swift it wasn't rea
 #### Datatypes
 These are the most important dataypes in Typescript.
 
-```ts
+```typescript
 // Basic
 let boolean: boolean = false;
 let number: number = 8;
