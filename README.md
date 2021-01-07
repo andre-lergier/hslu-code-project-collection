@@ -20,16 +20,15 @@ These are the key technologies I wanted to learn:
 - [Node.js **14**](https://nodejs.org/)
 - [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
 
----
 
-# Run Project
+## Run Project
 
-## Setup
+### Setup
 ```zsh
 npm run setup
 ```
 
-## Development Frontend
+### Development Frontend
 Compiles and hosts server for development
 ```zsh
 npm run frontend
@@ -40,7 +39,7 @@ cd frontend
 npm run serve
 ```
 
-## Build Frontend
+### Build Frontend
 ```zsh
 npm run frontend-build
 ```
@@ -50,7 +49,7 @@ cd frontend
 npm run build
 ```
 
-## Backend
+### Backend
 Connects to MongoDB and starts API-Server
 ```
 npm run backend
@@ -61,14 +60,9 @@ cd backend
 npm run dev
 ```
 
----
-
 __Public Website:__ [code.lergier.ch](https://code.lergier.ch)  
 __API HTTP:__ [api.code.lergier.ch](http://api.code.lergier.ch)  
 __API HTTPS:__ [hslu-code-project-collection.herokuapp.com](https://hslu-code-project-collection.herokuapp.com/)
-
-> Code to deploy to Heroku:  
-```git subtree push --prefix backend heroku master```
 
 ---
 
@@ -76,24 +70,52 @@ __API HTTPS:__ [hslu-code-project-collection.herokuapp.com](https://hslu-code-pr
 
 ## Architecture  
 
+> Code to deploy to Heroku:  
+```git subtree push --prefix backend heroku master```
+
 ## Technologies 
 
-## Vue 3
-[Vue+TypeScript Cheatsheets](https://github.com/typescript-cheatsheets/vue)
+### Vue 3
+View 3 was only a few weeks old when I started with this project.  
+I didn't experience big differences or improvements. For me the biggest change was using `TypeScript` instead of normal `JavaScript`.
+
+To setup the project I used the newest version of __[Vue CLI](https://cli.vuejs.org/guide/)__ with the following options:
+![Vue CLI Settingns](readme-assets/vue-cli-settings.png)
+
+Helful Links:
+- [Vue+TypeScript Cheatsheets](https://github.com/typescript-cheatsheets/vue)
 
 ### MongoDB
-In all my previous projects with a database I used a relational SQL-DB. So this is the very first time for me to try out a no SQL, file based database. Simply explained, in a noSQL Database the data isn't stored in columns and rows but in files.  
+In all my previous projects with a database I used a relational SQL-DB. So this is the very first time for me to try out a no SQL, file based database. Simply explained, in a noSQL Database the data isn’t stored in columns and rows but in files.
 
 #### MongoDB vs SQL
 
 ![m100-database-terminology](https://university-courses.s3.amazonaws.com/M100/m100-database-terminology.png)  
 
-Documents are organized in Collections. In a SQL-DB, a collection would be a table and a row a document.
-Data is organized in field-value pairs, like _key & value_ in JSON or a JS object.  
-A document is stored in `BSON` format, which means _Binary_ JSON. BSON for example allows additional data types like `Integer`, `Long`, `Float`, `Date`.
+Documents are organized in Collections. In a SQL-DB, a collection would be a table and a row a document. Data is organized in field-value pairs, like *key & value* in JSON or a JS object. →
+A document is stored in `BSON` format, which means *Binary* JSON. BSON for example allows additional data types like `Integer`, `Long`, `Float`, `Date`.  
 
->__Clusters:__ Group of servers that store your data.  
-__Replica Set:__ A few connected machines that store the same data to ensure that if something happens to one of the machines the data will remain intact.
+__Clusters:__ Group of servers that store your data.  
+__Replica Set:__ A few connected machines that store the same data to ensure that if something happens to one of the machines the data will remain intact.  
+
+Every document in MongoDB has a unique `_id` field: `"_id": "..."`
+
+
+#### Important Commands
+| **Command** | **Description** |
+|---|---|
+| `show dbs` | Show list of databases in the cluster |
+| `use [databaseName]` | Go to a database inside Cluster |
+| `show collections` | Show all collections (tables) inside the selected database |
+| `db.[collectionName].find( {"state":"NY", "city":"ALBANY"} )` | Search content in a table, shows matching documents. The query are the same as when used on data explorer (If step 2 is done, db is an alias for the selected database) |
+| `[find(...)].count()` | Number of elements |
+| `[find(...)].pretty()` | Prettify text to be easy readable |
+| `db.[collectionName].findOne()` | Show random document |
+| `db.[collectionName].insert({...}) db.[collectionName].insert([{ ... }, { ... }]) db.[collectionName].insert([{ ... }, { ... }], { "ordered": false })` | Insert new document Without "ordered": false inserting will stop if there is an error |
+| `db.[collectionName].updateMany({ "city": "HUDSON" }, { "$inc": { "pop": 10 } })` <br> `db.grades.updateOne({ "student_id": 250, "class_id": 339 }` <br> `{ "$push": { "scores": { "type": "extra credit", "score": 100 } } })` | $inc: increment <br>$set: new value <br>$push: add new object to array |
+| `db.[collectionName].deleteMany({ "test": 1 }) db.[collectionName].deleteOne({ "_id": 3 })` | Delete document |
+| `db.[collectionName].drop()` | Delete collection When all collections are dropped from a database, the database no longer appears in the list of databases when you run show dbs. |
+
 
 
 #### Tutorials
