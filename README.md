@@ -280,7 +280,7 @@ To hash the password before saving it to the database I use `bcrypt`. This makes
 #### Sanitization
 To sanitize the user requests I use `express-validator` as a middleware on the server.
 - [```express-validator```](https://express-validator.github.io/docs/index.html)
-  - [```validator.js```](https://github.com/validatorjs/validator.js#validators):bulb:
+  - [```validator.js```](https://github.com/validatorjs/validator.js#validators)
 
 
 ### Tutorials 
