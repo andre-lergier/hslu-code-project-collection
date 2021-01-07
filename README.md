@@ -21,7 +21,7 @@ These are the key technologies I wanted to learn:
 - [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
 
 
-## Run Project
+## Run Project ⚙️
 
 ### Setup
 ```zsh
@@ -66,14 +66,14 @@ __API HTTPS:__ [hslu-code-project-collection.herokuapp.com](https://hslu-code-pr
 
 ---
 
-# Documentation
+# Documentation 📔
 
-## Architecture  
+## Architecture  📐
 
 > Code to deploy to Heroku:  
 ```git subtree push --prefix backend heroku master```
 
-## Technologies 
+## Technologies 💡
 
 ### Vue 3
 View 3 was only a few weeks old when I started with this project.  
@@ -254,7 +254,7 @@ To hash the password before saving it to the database I use `bcrypt`. This makes
 #### Sanitization
 To sanitize the user requests I use `express-validator` as a middleware on the server.
 - [```express-validator```](https://express-validator.github.io/docs/index.html)
-  - [```validator.js```](https://github.com/validatorjs/validator.js#validators)
+  - [```validator.js```](https://github.com/validatorjs/validator.js#validators):bulb:
 
 ### Tutorials
 __If using Typescript:__  
