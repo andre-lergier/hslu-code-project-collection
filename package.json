@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "description": "Mentoring project at Lucerne University of Applied Sciences and Arts HSLU",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "frontend": "cd frontend && npm run serve",
-    "frontend-build": "cd frontend && npm run build && cd dist && live-server",
+    "frontend-build": "cd frontend && npm run build",
     "backend": "cd backend && npm run dev",
     "backend-build": "cd backend && npm run start-local",
-    "dev": "npm run frontend && npm run backend",
-    "build": "npm run frontend-build && npm run backend-build"
+    "build": "npm run frontend-build && npm run backend-build",
+    "setup": "cd frontend && npm install && cd ../backend && npm install"
   },
   "repository": {
     "type": "git",

@@ -1,53 +1,71 @@
-# Project collection with Vue.js, MongoDB & Rest
+# Code Project Collection with Vue.js, MongoDB, REST API and more
 
-Personal mentoring project with [Maria Husmann](https://github.com/mhusm)  
-HS2020  
-Hochschule Luzern, Digital Ideation
+>Personal mentoring project with [Maria Husmann](https://github.com/mhusm)  
+Hochschule Luzern, Digital Ideation, HS2020
 
----
+
+This website helps me to keep an overview of git repositories on different platforms, dev-, stage- and production-deployments and their particular hosting.  
+The data is stored in a `MongoDB` and is accessed with a `REST API`. The frontend is based on `Vue.js`.
+
 
 ## Technical Challenges :rocket:
-With this project I want to try out technologies, I never used before or I'm not yet very used to.
-
-- [Vue.js **3**](https://v3.vuejs.org/)
+The sense behind this project is to try out and learn new technologies, concepts and libraries I never used before or don't know yet very well.  
+These are the key technologies I wanted to learn:
 - [TypeScript](https://www.typescriptlang.org/)
 - [MongoDB](https://www.mongodb.com/)
-- [Rest](https://restfulapi.net/)
-- [Node.js **14**](https://nodejs.org/)
+- [REST API](https://restfulapi.net/)
 - [Express](https://expressjs.com/)
-- [Axios]()
-- [JWT]()
-- [CSS Grid]()
+- [Axios](https://github.com/axios/axios)
+- [JWT](https://jwt.io/)
+- [bcrypt.js](https://github.com/dcodeIO/bcrypt.js)
+- [Vue.js **3**](https://v3.vuejs.org/)
+- [Node.js **14**](https://nodejs.org/)
+- [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
 
 ---
 
-## Project setup frontend
+# Run Project
+
+## Setup
+```
+npm run setup
+```
+
+## Development Frontend
+Compiles and hosts server for development
+```
+npm run frontend
+```
+or
 ```
 cd frontend
-```
-
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
 ```
 
-### Compiles and minifies for production
+## Build Frontend
 ```
+npm run frontend-build
+```
+or
+```
+cd frontend
 npm run build
 ```
 
-### Lints and fixes files
+## Backend
+Connects to MongoDB and starts API-Server
 ```
-npm run lint
+npm run backend
+```
+or
+```
+cd backend
+npm run dev
 ```
 
 ---
 
-__Page:__ [code.lergier.ch](https://code.lergier.ch)  
+__Public Website:__ [code.lergier.ch](https://code.lergier.ch)  
 __API HTTP:__ [api.code.lergier.ch](http://api.code.lergier.ch)  
 __API HTTPS:__ [hslu-code-project-collection.herokuapp.com](https://hslu-code-project-collection.herokuapp.com/)
 
