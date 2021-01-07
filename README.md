@@ -90,7 +90,9 @@ Helpful Links:
 
 
 ### MongoDB
-In all my previous projects with a database I used a relational SQL-DB. So this is the very first time for me to try out a no SQL, file based database. Simply explained, in a noSQL Database the data isn’t stored in columns and rows but in files.
+In all my previous projects with a database I used a relational SQL-DB. So this is the very first time for me to try out a no SQL, file based database. Simply explained, in a noSQL Database the data isn’t stored in columns and rows but in files.  
+  
+A lot of Tutorials use the Mongoose library to interact with the Database. After looking at the Node.js documentation from MongoDB I decided to use the native driver instead of this external library.
 
 #### MongoDB vs SQL
 
@@ -128,20 +130,56 @@ To get startet with MongoDB I used [MongoDB University](https://university.mongo
 - [M103: Basic Cluster Administration](https://university.mongodb.com/courses/M103/about)
 
 __More Links:__
+- [What is MongoDB](https://www.mongodb.com/what-is-mongodb) (Nice basic examples)
 - [Structure Data for MongoDB](https://docs.mongodb.com/guides/server/introduction/)
-- [Node Driver](https://docs.mongodb.com/drivers/node/)
-  - [Node CRUD Operations](https://docs.mongodb.com/drivers/node/fundamentals/crud)
+- [MongoDB Node Driver](https://docs.mongodb.com/drivers/node/)
+  - [Node QuickStart](https://docs.mongodb.com/drivers/node/quick-start)
+  - [Node CRUD Operations](https://docs.mongodb.com/drivers/node/fundamentals/crud) (CRUD = Create, Read, Update, Delete)
+  - [Node Driver Documentation](http://mongodb.github.io/node-mongodb-native/3.6/)
   - [Node Driver API](http://mongodb.github.io/node-mongodb-native/3.6/api/Collection.html)
-- [Data Modeling](https://docs.mongodb.com/manual/core/data-modeling-introduction/)
+- [MongoDB Data Modeling](https://docs.mongodb.com/manual/core/data-modeling-introduction/)
+- [Schema Validation](https://docs.mongodb.com/manual/core/schema-validation/)
+  - [Validation in Compass](https://docs.mongodb.com/compass/master/validation)
+  -[`$jsonSchema`](https://docs.mongodb.com/manual/reference/operator/query/jsonSchema/)
+- [1:n Relationships](https://docs.mongodb.com/manual/tutorial/model-referenced-one-to-many-relationships-between-documents/)
 
 ### Typescript
+For the Vue 3 frontend of my application I used Typescript.  
+I'm very used to write JS and it was somehow strange to change the way you write your normal code.
+Because I already wrote code in typed languages like Java or Swift it wasn't really hard to understand how it works.
+
+#### Datatypes
+These are the most important dataypes in Typescript.
+
+```js
+// Basic
+let boolean: boolean = false;
+let number: number = 8;
+let string: string = "blue";
+let notSure: unknown = 4;
+
+noReturn = (): void => {}
+
+// Array
+let list: number[] = [1, 2, 3];
+let list: Array<number> = [1, 2, 3];
+
+// Tuple
+let x: [string, number] = ["hello", 10];
+```
+
 #### Tutorials:
 - [Using TypeScript with Vue Single File Components](https://www.digitalocean.com/community/tutorials/vuejs-using-typescript-with-vue)
 
-## API
-### REST
-- CRUD (Create, Read, Update, and Delete)
 
+__More Links:__
+- [TypeScript for JavaScript Programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+- [TypeScript Basic Types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+
+## API
+To access and manage the database I wanted to write an API. This brings the benefits of an independent backend, so you can access the data from every client.
+
+### REST
 #### Status Codes
 | Code | Status                |
 |------|-----------------------|
@@ -155,21 +193,68 @@ __More Links:__
 | 400  | Bad Request           |
 | 401  | Unauthorized          |
 | 403  | Forbidden             |
-| 409  | Conflict             |
+| 409  | Conflict              |
 | 501  | Not Implemented       |
 
 ### Express
 - [CORS](https://github.com/expressjs/cors)
 
+### Axios
+- [Vue.js REST API Consumption with Axios](https://www.digitalocean.com/community/tutorials/vuejs-rest-api-axios)
+
 ### Security
-A JSON Web Token consists of 3 parts sperated by dots: `Header`, `Payload` and `Signature`: `xxxxx.yyyyy.zzzzz`
+For the Login authorization I use the great technology of __JSON Web Tokens__.
+A JSON Web Token consists of 3 parts sperated by dots: `Header`, `Payload` and `Signature`: `xxxxx.yyyyy.zzzzz`  
+Each part then is __`Base64Url`__ encoded.
+
+When a users logs in successfully the API Server responds a JWT.
+
+__HTTP Request:__
+```json
+{
+    "email": "admin@lergier.ch",
+    "password": "myPassword"
+}
+```
+
+__Server Response:__
+```json
+{
+    "success": true,
+    "message": "Login successfully",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmY3MmY4Y2MwYzg3ZTQ4MTA2NzAyYzYiLCJlbWFpbCI6ImFkbWluQGxlcmdpZXIuY2giLCJpYXQiOjE2MTAwNDk0MjcsImV4cCI6MTYxMDQ4MTQyN30.kwAqGeT9IFvX40QoST0T1r7JyPJ4XPKv_p_5nsfZXF4",
+    ...
+}
+```
+
+Analyzing the token using the [debugger](https://jwt.io/#debugger), it becomes clear what's stored inside it.
+![JWT Debugger](readme-assets/jwt-debugger.png)
+
+The important payload data in this response is the user information.
+```json
+{
+  "userId": "5ff72f8cc0c87e48106702c6",
+  "email": "admin@lergier.ch",
+  "iat": 1610049427,
+  "exp": 1610481427
+}
+```
+
+Using the right private key ``lets you verify the signature. This ensures that the data in the payload section wasn't changed.
+
+#### Links:
 - [Introduction JWT](https://jwt.io/introduction/)
 - [Documentation JWT](https://github.com/auth0/node-jsonwebtoken)
-- [Documentation bcrypt](https://github.com/kelektiv/node.bcrypt.js)
+
+#### Password Handling
+To hash the password before saving it to the database I use `bcrypt`. This makes the handling with passwords easy and safe. `bcrypt` then offers nice functinos to compare the password of the user with the hashed one in the database.  
+
+[Documentation bcrypt](https://github.com/kelektiv/node.bcrypt.js)
 
 #### Sanitization
+To sanitize the user requests I use `express-validator` as a middleware on the server.
 - [```express-validator```](https://express-validator.github.io/docs/index.html)
-- [```validator.js```](https://github.com/validatorjs/validator.js#validators)
+  - [```validator.js```](https://github.com/validatorjs/validator.js#validators)
 
 ### Tutorials
 __If using Typescript:__  
@@ -178,7 +263,8 @@ __If using Typescript:__
 - [Using TypeScript with MongoDB](https://medium.com/swlh/using-typescript-with-mongodb-393caf7adfef)
 
 
-- Simple Approach: https://medium.com/@onejohi/building-a-simple-rest-api-with-nodejs-and-express-da6273ed7ca9
+__Simple Approaches:__
+- https://medium.com/@onejohi/building-a-simple-rest-api-with-nodejs-and-express-da6273ed7ca9
 - https://medium.com/weekly-webtips/how-to-create-a-rest-api-with-express-js-and-node-js-3de5c5f9691c  
 
 
