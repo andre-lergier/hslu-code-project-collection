@@ -24,7 +24,7 @@ These are the key technologies I wanted to learn:
 
 
 This is the architecture of the application, based on these technologies.
-![Project architecture](readme-assets/architecture.png)
+![Project architecture](readme-assets/architecture-2.png)
 
 ## Run Project ⚙️
 
