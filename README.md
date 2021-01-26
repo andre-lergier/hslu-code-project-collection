@@ -222,21 +222,111 @@ To access and manage the database I wanted to write an API. This brings the bene
 
 ### API Routes
 > 🔑: Valid authentication header required  
-🧹: Sanitization  
-⭐️: More information if authenticated
+🧹: Parameters are sanitized by the server  
+⭐️: Returns more information if authenticated
 
 #### GET `/projects` ⭐️
-Special: If Auth-Header is sent, the response contains more information.
+Returns all projects stored in the database. If valid authentication header is sent, the response contains more information.  
+
+Response `200: OK`:
+```json
+{
+  "success": true,
+  "message": "projects",
+  "projects": [
+    {
+      "_id": "MongoDB ID",
+      "title": "string",
+      "category": "string",
+      "year": "number",
+      "private": "boolean",
+      "publicLink": {
+        "url": "string"
+      },
+      "repository": {
+        "platform": "string",
+        "name": "string",
+        "url": "string"
+      }
+    }
+  ]
+}
+```
 
 #### GET `/projects/:url` ⭐️
+Returns the details of the project where the the provided `:url` is equal to `publicLink.url`. If valid authentication header is sent, the response contains more information.  
+
+Response `200: OK`:
+```json
+{
+  "success": true,
+  "message": "project",
+  "projects": {
+    "_id": "MongoDB ID",
+    "title": "string",
+    "category": "string",
+    "year": "number",
+    "private": "boolean",
+    "publicLink": {
+      "url": "string"
+    },
+    "repository": {
+      "platform": "string",
+      "name": "string",
+      "url": "string"
+    }
+  }
+}
+```
 
 #### POST `/projects` 🔑 🧹
+Endpoint to create a new project. The request body must contain at least the values `title`, `category`, `year` and `private`.  
+
+Request:
+```json
+{
+  "title": "string",
+  "category": "string",
+  "year": "number",
+  "private": "boolean",
+  "publicLink": { url: "string", tags: [ "string" ] },
+  "devLink": { url: "string", tags: [ "string" ] },
+  "repository": { platform: "string", url: "string", tags: [ "string" ] },
+  "database": { title: "string", url: "string", tags: [ "string" ] }
+}
+```
+
+Response: `201: Created`
+```json
+{
+  "success": true,
+  "message": "project added successfully",
+  "project": {
+    "title": "string",
+    "category": "string",
+    "year": "number",
+    "private": "boolean",
+    "_id": "MongoDB Id"
+  },
+  "projectId": "MongoDB Id"
+}
+```
 
 #### PATCH `/projects/:id` 🔑
+Endpoint to update a project. In the current version not implemented yet.  
 
 #### DELETE `/projects/:id` 🔑
+Endpoint to delete a project. The provided `:id` needs to be the MongoDB ID from the specific project.  
 
+Response `200: OK`:
+```json
+{
+  "success": true,
+  "message": "1 project successfully deleted"
+}
+```
 
+---
 #### GET `/user` 🔑
 Returns current user based on provided token.
 
@@ -260,10 +350,31 @@ Response `200: OK`:
 
 
 #### GET `/user/:email` 🔑
-#### POST `/user` 🧹
+Returns current user information based on `:email` parameter. It's only possible to get the information of the logged in user.  
 
+Response `200: OK`:
+```json
+{
+  "success": true,
+  "message": "user",
+  "user": {
+    "_id": "MongoDB ID",
+    "name": {
+      "firstname": "string",
+      "familyname": "string"
+    },
+    "email": "string",
+    "authorizedByAdmin": "boolean"
+  }
+}
+```
+
+#### POST `/user` 🧹⭐️
+Endpoint to create a new user. If valid authentication header is provided, the option `authorizedByAdmin` is set to `true`, otherwise it's `false`.  
 
 #### POST `/user/login` 🔑 🧹
+Endpoint to perform the login.  
+
 Request:
 ```json
 {
@@ -291,7 +402,7 @@ Response `200: OK`:
 ```
 
 #### DELETE `/user/:id` 🔑
- 
+Endpoint to delete the user where the the provided `:id` is equal to it's `MongoDB Id`.
 
 #### HTTP Status Codes
 | Code | Status                |
