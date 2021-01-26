@@ -220,6 +220,22 @@ __More Links:__
 ## API
 To access and manage the database I wanted to write an API. This brings the benefits of an independent backend, so you can access the data from every client.
 
+### HTTP Status Codes
+| Code | Status                |
+|------|-----------------------|
+| 200  | OK                    |
+| 404  | Not found             |
+| 500  | Internal Server Error |
+|      |                       |
+| 201  | Created               |
+| 204  | No Content            |
+| 304  | Modified              |
+| 400  | Bad Request           |
+| 401  | Unauthorized          |
+| 403  | Forbidden             |
+| 409  | Conflict              |
+| 501  | Not Implemented       |
+
 ### API Routes
 > 🔑: Valid authentication header required  
 🧹: Parameters are sanitized by the server  
@@ -404,21 +420,13 @@ Response `200: OK`:
 #### DELETE `/user/:id` 🔑
 Endpoint to delete the user where the the provided `:id` is equal to it's `MongoDB Id`.
 
-#### HTTP Status Codes
-| Code | Status                |
-|------|-----------------------|
-| 200  | OK                    |
-| 404  | Not found             |
-| 500  | Internal Server Error |
-|      |                       |
-| 201  | Created               |
-| 204  | No Content            |
-| 304  | Modified              |
-| 400  | Bad Request           |
-| 401  | Unauthorized          |
-| 403  | Forbidden             |
-| 409  | Conflict              |
-| 501  | Not Implemented       |
+Response `200: OK`:
+```json
+{
+  "success": true,
+  "message": "1 user successfully deleted"
+}
+```
 
 ### Express
 - [CORS](https://github.com/expressjs/cors)

@@ -14,7 +14,7 @@
     "build-babel": "npx babel index.js --out-file index-comp.js -s --presets=@babel/preset-env",
     "build-test": "npm run clean && npm run build-babel",
     "start-local": "node -r dotenv/config index.js --presets=@babel/preset-en",
-    "start": "node index.js --presets=@babel/preset-en"
+    "start": "node index.js --presets=@babel/preset-env"
   },
   "repository": {
     "type": "git",
