@@ -154,7 +154,7 @@ To get startet with MongoDB I used [MongoDB University](https://university.mongo
 - [M100: MongoDB for SQL Pros](https://university.mongodb.com/courses/M100/about)
 - [M103: Basic Cluster Administration](https://university.mongodb.com/courses/M103/about)
 
-__More Links:__
+#### More Links
 - [What is MongoDB](https://www.mongodb.com/what-is-mongodb) (Nice basic examples)
 - [Structure Data for MongoDB](https://docs.mongodb.com/guides/server/introduction/)
 - [MongoDB Node Driver](https://docs.mongodb.com/drivers/node/)
@@ -170,7 +170,7 @@ __More Links:__
 
 
 
-### Typescript
+### Typescript 
 For the Vue 3 frontend of my application I used Typescript.  
 I'm very used to write JS and it was somehow strange to change the way you write your normal code.
 Because I already wrote code in typed languages like Java or Swift it wasn't really hard to understand how it works.
