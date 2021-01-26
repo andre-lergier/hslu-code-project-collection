@@ -18,7 +18,7 @@ export default class ProjectRoutes {
 
     this.router.post('/', Sanitization.project.create, Sanitization.checkValidationResults, checkAuthorization, this.controller.create.bind(this.controller));
 
-    this.router.put('/', (req, res) => res.status(304).send('Received a PUT HTTP method'));
+    this.router.patch('/:id', (req, res) => res.status(304).send('Received a Patch HTTP method'));
 
     this.router.delete('/:id', checkAuthorization, this.controller.delete.bind(this.controller));
   }

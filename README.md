@@ -53,28 +53,42 @@ npm run build
 
 ### Backend
 Connects to MongoDB and starts API-Server
-```
+```zsh
 npm run backend
 ```
 or
-```
+```zsh
 cd backend
 npm run dev
+```
+
+### Environment Variables
+The backend server uses multiple enviroment variables, which are loaded by the library [dotenv](). Therefore create a `.env` file in the `backend/` folder.
+```
+PORT=4433 # API Port
+
+MONGO_USER=<>
+MONGO_PASSWORD=<>
+MONGO_URL=h<>
+MONGO_DB=<>
+
+JWT_PRIVATEKEY=<>
 ```
 
 __Public Website:__ [code.lergier.ch](https://code.lergier.ch)  
 __API HTTP:__ [api.code.lergier.ch](http://api.code.lergier.ch)  
 __API HTTPS:__ [hslu-code-project-collection.herokuapp.com](https://hslu-code-project-collection.herokuapp.com/)
 
+> Code to deploy to Heroku:  
+```git subtree push --prefix backend heroku master```
+
 ---
 
 # Documentation 📔
 
-<!-- ## Architecture  📐
+## Architecture  📐
 
-> Code to deploy to Heroku:  
-```git subtree push --prefix backend heroku master```
--->
+
 
 ## Views
 ### Project overview
@@ -206,7 +220,78 @@ __More Links:__
 ## API
 To access and manage the database I wanted to write an API. This brings the benefits of an independent backend, so you can access the data from every client.
 
-### RESTful
+### API Routes
+> 🔑: Valid authentication header required  
+🧹: Sanitization  
+⭐️: More information if authenticated
+
+#### GET `/projects` ⭐️
+Special: If Auth-Header is sent, the response contains more information.
+
+#### GET `/projects/:url` ⭐️
+
+#### POST `/projects` 🔑 🧹
+
+#### PATCH `/projects/:id` 🔑
+
+#### DELETE `/projects/:id` 🔑
+
+
+#### GET `/user` 🔑
+Returns current user based on provided token.
+
+Response `200: OK`:
+```json
+{
+  "success": true,
+  "message": "User",
+  "token": "JWT",
+  "user": {
+    "_id": "MongoDB ID",
+    "name": {
+      "firstname": "string",
+      "familyname": "string"
+    },
+    "email": "string",
+    "authorizedByAdmin": "boolean"
+  }
+}
+```
+
+
+#### GET `/user/:email` 🔑
+#### POST `/user` 🧹
+
+
+#### POST `/user/login` 🔑 🧹
+Request:
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```
+
+Response `200: OK`:
+```json
+{
+  "success": true,
+  "message": "Login successfully",
+  "token": "JWT",
+  "user": {
+    "_id": "MongoDB ID",
+    "name": {
+      "firstname": "string",
+      "familyname": "string"
+    },
+    "email": "string",
+    "authorizedByAdmin": "boolean"
+  }
+}
+```
+
+#### DELETE `/user/:id` 🔑
+ 
 
 #### HTTP Status Codes
 | Code | Status                |
