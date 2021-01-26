@@ -23,6 +23,9 @@ These are the key technologies I wanted to learn:
 - [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
 
 
+This is the architecture of the application, based on these technologies.
+![Project architecture](readme-assets/architecture.png)
+
 ## Run Project ⚙️
 
 ### Setup
@@ -85,10 +88,6 @@ __API HTTPS:__ [hslu-code-project-collection.herokuapp.com](https://hslu-code-pr
 ---
 
 # Documentation 📔
-
-## Architecture  📐
-
-
 
 ## Views
 ### Project overview
