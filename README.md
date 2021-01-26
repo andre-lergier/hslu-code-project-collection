@@ -289,10 +289,10 @@ Request:
   "category": "string",
   "year": "number",
   "private": "boolean",
-  "publicLink": { url: "string", tags: [ "string" ] },
-  "devLink": { url: "string", tags: [ "string" ] },
-  "repository": { platform: "string", url: "string", tags: [ "string" ] },
-  "database": { title: "string", url: "string", tags: [ "string" ] }
+  "publicLink": { "url": "string", "tags": [ "string" ] },
+  "devLink": { "url": "string", "tags": [ "string" ] },
+  "repository": { "platform": "string", "url": "string", "tags": [ "string" ] },
+  "database": { "title": "string", "url": "string", "tags": [ "string" ] }
 }
 ```
 
