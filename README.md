@@ -170,7 +170,7 @@ To get startet with MongoDB I used [MongoDB University](https://university.mongo
 
 
 
-### Typescript 
+### Typescript 
 For the Vue 3 frontend of my application I used Typescript.  
 I'm very used to write JS and it was somehow strange to change the way you write your normal code.
 Because I already wrote code in typed languages like Java or Swift it wasn't really hard to understand how it works.
