@@ -166,7 +166,8 @@ __More Links:__
 - [Schema Validation](https://docs.mongodb.com/manual/core/schema-validation/)
   - [Validation in Compass](https://docs.mongodb.com/compass/master/validation)
   -[`$jsonSchema`](https://docs.mongodb.com/manual/reference/operator/query/jsonSchema/)
-- [1:n Relationships](https://docs.mongodb.com/manual/tutorial/model-referenced-one-to-many-relationships-between-documents/)
+- [1:n Relationships](https://docs.mongodb.com/manual/tutorial/model-referenced-one-to-many-relationships-between-documents/)  
+
 
 ### Typescript
 For the Vue 3 frontend of my application I used Typescript.  
