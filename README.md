@@ -1,4 +1,4 @@
-# Code Project Collection with Vue.js, MongoDB, REST API
+# Code Project Collection with Vue.js, MongoDB, REST API <!-- omit in toc -->
 This website helps me to keep an overview of git repositories on different platforms, dev-, stage- and production-deployments and their particular hosting.  
 The data is stored in a `MongoDB` and is accessed with a `REST API`. The frontend is based on `Vue.js`.  
 
@@ -6,6 +6,32 @@ The data is stored in a `MongoDB` and is accessed with a `REST API`. The fronten
 >Personal mentoring project with [Maria Husmann](https://github.com/mhusm)  
 Hochschule Luzern, Digital Ideation, HS2020  
 
+
+- [Run Project ⚙️](#run-project-️)
+    - [Setup](#setup)
+    - [Development Frontend](#development-frontend)
+    - [Build Frontend](#build-frontend)
+    - [Backend](#backend)
+    - [Environment Variables](#environment-variables)
+- [Documentation 📔](#documentation-)
+  - [Views](#views)
+    - [Project overview](#project-overview)
+    - [Projects](#projects)
+    - [Login](#login)
+    - [Create/Request an Account](#createrequest-an-account)
+    - [Create Project](#create-project)
+  - [Technologies 💡](#technologies-)
+    - [Vue 3](#vue-3)
+    - [MongoDB](#mongodb)
+    - [Typescript](#typescript)
+  - [API 🎯](#api-)
+    - [HTTP Status Codes](#http-status-codes)
+    - [API Routes](#api-routes)
+    - [Express](#express)
+    - [Axios](#axios)
+    - [Security](#security)
+    - [Tutorials](#tutorials)
+  - [Prototype 📐](#prototype-)
 
 
 ## Technical Challenges :rocket:
@@ -23,10 +49,11 @@ These are the key technologies I wanted to learn:
 - [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
 
 
-This is the architecture of the application, based on these technologies.
+### Architecture
+Based on these technologies, the architecture of the application can be split up in 3 parts.
 ![Project architecture](readme-assets/architecture-2.png)
 
-## Run Project ⚙️
+# Run Project ⚙️
 
 ### Setup
 ```zsh
@@ -216,7 +243,7 @@ __More Links:__
 - [TypeScript for JavaScript Programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
 - [TypeScript Basic Types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 
-## API
+## API 🎯
 To access and manage the database I wanted to write an API. This brings the benefits of an independent backend, so you can access the data from every client.
 
 ### HTTP Status Codes
